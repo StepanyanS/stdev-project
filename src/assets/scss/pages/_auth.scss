@@ -1,0 +1,19 @@
+.auth {
+  height: 100vh;
+  background-color: #f0f0f0;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.auth-content {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.auth-form {
+  box-shadow: -4px 4px 10px 0 rgba(0, 0, 0, .16);
+  background-color: #fff;
+  border-radius: $br-md;
+  padding: 20px 30px;
+}

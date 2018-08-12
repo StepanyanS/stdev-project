@@ -1,0 +1,39 @@
+.btn {
+  display: inline-block;
+  line-height: 45px;
+  color: #fff;
+  font-size: $md;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+  border: 1px solid;
+  font-family: $font-primary;
+
+  &.filled {
+    &.primary {
+      background-color: $color-primary;
+      border-color: darken($color-primary, 8%);
+
+      &:hover {
+        background-color: darken($color-primary, 8%);
+      }
+    }
+
+    &[disabled], &.disabled {
+      opacity: .7;
+
+      &:hover {
+        background-color: $color-primary;
+      }
+    }
+  }
+
+  &.max-180 {
+    max-width: 180px;
+    width: 100%;
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+}

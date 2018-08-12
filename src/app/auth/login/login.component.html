@@ -1,0 +1,47 @@
+<h3 class="text-center">Login</h3>
+
+<form [formGroup]="loginForm" (submit)="onSubmit()">
+  <div class="field-group">
+    <div class="text-field" [ngClass]="{'invalid': loginForm.get('email').invalid && loginForm.touched}">
+      <input
+        id="email"
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      >
+      <p *ngIf="loginForm.get('email').invalid && loginForm.touched" class="error-msg">
+        <span *ngIf="loginForm.get('email')['errors']['required']">Email can not be empty</span>
+        <span *ngIf="loginForm.get('email')['errors']['email']">Please enter the correct email</span>
+      </p>
+    </div>
+    <div class="text-field" [ngClass]="{'invalid': loginForm.get('password').invalid && loginForm.touched}">
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      >
+      <p *ngIf="loginForm.get('password').invalid && loginForm.touched" class="error-msg">
+        <span *ngIf="loginForm.get('password')['errors']['required']">Password can not be empty</span>
+        <span *ngIf="loginForm.get('password')['errors']['minlength']">
+          Password must be at least {{loginForm.get('password')['errors']['minlength']['requiredLength']}} characters.
+          You have entered {{loginForm.get('password')['errors']['minlength']['actualLength']}}
+        </span>
+      </p>
+    </div>
+    <div *ngIf="message.text" class="text-field" [ngClass]="{'invalid': message.type === 'danger'}">
+      <p [ngClass]="{'error-msg': message.type === 'danger', 'success-msg': message.type === 'success'}">{{ message.text }}</p>
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    class="mt-4 btn filled primary full-width"
+    [disabled]="loginForm.invalid"
+    [ngClass]="{'disabled': loginForm.invalid}"
+  >
+    Login
+  </button>
+</form>
+
+<a routerLink="/registration">Register</a>

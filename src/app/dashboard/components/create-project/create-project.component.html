@@ -1,0 +1,51 @@
+<h1>Create Project</h1>
+
+<form class="mt-4" [formGroup]="createProjectForm" (submit)="onCreateProject()">
+  <div class="text-field" [ngClass]="{'invalid': createProjectForm.get('projectName').invalid && createProjectForm.get('projectName').touched}">
+    <input
+      id="projectName"
+      type="text"
+      formControlName="projectName"
+      placeholder="Project Name"
+    >
+    <p *ngIf="createProjectForm.get('projectName').invalid && createProjectForm.get('projectName').touched" class="error-msg">Project name must be filled</p>
+  </div>
+</form>
+
+<div class="text-field">
+  <input #colorName type="text" placeholder="Color Name">
+</div>
+
+<div class="text-field">
+  <input #color type="color" (change)="onColorChange($event)">
+</div>
+<div class="text-field">
+  <input step="5" min="0" max="100" [(ngModel)]="colorsService.opacity" type="range" (input)="onOpacityChange($event, color)">
+</div>
+<p class="mb-4">Opacity: {{ colorsService.opacity / 100 }}</p>
+<div class="color-preview"></div>
+
+<button
+  (click)="onAddColor(colorName, color)"
+  class="btn filled primary max-180 mt-4"
+>Add Color</button>
+
+<button
+  (click)="onCreateProject()"
+  [disabled]="createProjectForm.invalid"
+  [ngClass]="{'disabled': createProjectForm.invalid}"
+  class="btn filled primary max-180 mt-4"
+>Create Project</button>
+
+<!-- <a
+  [href]="downloadLink"
+  [ngClass]="{'disabled': !projectIsCreated}"
+  class="btn filled primary max-180 mt-4 ml-2"
+>Download</a> -->
+
+<button
+  (click)="onDownload()"
+  [disabled]="!projectIsCreated"
+  [ngClass]="{'disabled': !projectIsCreated}"
+  class="btn filled primary max-180 mt-4 ml-2"
+>Download</button>

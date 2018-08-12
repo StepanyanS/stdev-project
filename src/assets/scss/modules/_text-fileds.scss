@@ -1,0 +1,43 @@
+.text-field {
+    position: relative;
+    padding: 20px 0;
+
+  input {
+    width: 100%;
+    height: 45px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: $md;
+    border: 1px solid #000;
+    font-size: $md;
+    font-family: $font-primary;
+  }
+
+  &.invalid {
+
+    input {
+      border-color: $color-warning;
+    }
+
+    .error-msg {
+      color: $color-warning;
+      font-size: $sm;
+      font-style: italic;
+      margin-top: 2px;
+      position: absolute;
+    }
+  }
+
+  .success-msg {
+    @extend .error-msg;
+    color: $color-success;
+  }
+}
+
+.field-group {
+
+  .text-field {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}

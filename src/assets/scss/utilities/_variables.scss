@@ -1,0 +1,55 @@
+//paths
+$fonts-folder: "../fonts";
+$images-folder: '../img/';
+
+//fonts
+$font-primary: "Open Sans", serif;
+$font-secondary: "Times New Roman", serif;
+$font-icons: "Icomoon Project Name";
+
+//color usage
+$color-blue: #0498d1 !default;
+$color-light-blue: #8fd8f8 !default;
+$color-black: #262626 !default;
+$color-red: #e44c23 !default;
+$color-green: #99c76a !default;
+
+$color-primary: $color-blue !default;
+$color-secondary: $color-black !default;
+$color-warning: $color-red !default;
+$color-success: $color-green !default;
+
+//Descriptive Base Colors
+$color-text: $color-black;
+
+//Text
+$xs: 12px;
+$sm: 14px;
+$md: 16px;
+$lg: 18px;
+$xl: 20px;
+
+$base-font-size: $md;
+
+//Border Radiuses
+$br-default: 4px;
+$br-md: 10px;
+$br-lg: 30px;
+$br-rounded: 50%;
+$br-none: 0;
+
+// Transitions
+$trns-duration: .3s;
+$trns-duration-lg: 1s;
+$trns-delay: 50ms;
+
+//container
+$cont-width: 1170px;
+$cont-padding: 30px;
+
+//Resolutions
+$screen-lg: 1280px;
+$screen-md: 1024px;
+$screen-sm: 768px;
+$screen-xs: 480px;
+$screen-xxs: 360px;

@@ -1,0 +1,67 @@
+<h3 class="text-center">Register</h3>
+
+<form [formGroup]="regForm" (submit)="onSubmit()">
+  <div class="field-group">
+
+    <div class="text-field" [ngClass]="{'invalid': regForm.get('name').invalid && regForm.get('name').touched}">
+      <input
+        id="name"
+        type="text"
+        placeholder="Developer Name"
+        formControlName="name"
+      >
+      <p *ngIf="regForm.get('name').invalid && regForm.get('name').touched" class="error-msg">Name can not be empty</p>
+    </div>
+
+    <div class="text-field" [ngClass]="{'invalid': regForm.get('email').invalid && regForm.get('email').touched}">
+      <input
+        id="email"
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      >
+      <p *ngIf="regForm.get('email').invalid && regForm.get('email').touched" class="error-msg">
+        <span *ngIf="regForm.get('email')['errors']['required']">Email can not be empty</span>
+        <span *ngIf="regForm.get('email')['errors']['email']">Please enter the correct email</span>
+        <span *ngIf="regForm.get('email')['errors']['forbiddenEmail']">This email is already exists</span>
+      </p>
+    </div>
+
+    <div class="text-field" [ngClass]="{'invalid': regForm.get('password').invalid && regForm.get('password').touched}">
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      >
+      <p *ngIf="regForm.get('password').invalid && regForm.get('password').touched" class="error-msg">
+        <span *ngIf="regForm.get('password')['errors']['required']">Password can not be empty</span>
+        <span *ngIf="regForm.get('password')['errors']['minlength']">
+          Password must be at least {{regForm.get('password')['errors']['minlength']['requiredLength']}} characters.
+          You have entered {{regForm.get('password')['errors']['minlength']['actualLength']}}
+        </span>
+      </p>
+    </div>
+
+    <div class="text-field" [ngClass]="{'invalid': regForm.get('confirmPassword').invalid && regForm.get('confirmPassword').touched}">
+      <input
+        id="confirmPassword"
+        type="password"
+        placeholder="Confirm Password"
+        formControlName="confirmPassword"
+      >
+      <p *ngIf="regForm.get('confirmPassword').invalid && regForm.get('confirmPassword').touched" class="error-msg">
+        <span *ngIf="regForm.get('confirmPassword')['errors']['required']">Confirm Password can not be empty</span>
+        <!--<span *ngIf="regForm.get('email')['errors']['minlength']">-->
+          <!--Password must be at least {{regForm.get('password')['errors']['minlength']['requiredLength']}} characters.-->
+          <!--You have entered {{regForm.get('password')['errors']['minlength']['actualLength']}}-->
+        <!--</span>-->
+      </p>
+    </div>
+
+  </div>
+
+  <button [disabled]="regForm.invalid" [ngClass]="{'disabled': regForm.invalid}" type="submit" class="mt-4 btn filled primary full-width">Registration</button>
+</form>
+
+<a routerLink="/login">Login</a>
