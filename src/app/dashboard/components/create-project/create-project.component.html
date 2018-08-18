@@ -12,40 +12,56 @@
   </div>
 </form>
 
-<div class="text-field">
-  <input #colorName type="text" placeholder="Color Name">
+<div class="cols-md-2 mt-5">
+  <div class="col">
+
+    <div class="text-field">
+      <input #colorName type="text" placeholder="Color Name">
+    </div>
+
+    <div class="text-field">
+      <input #color type="color" (change)="onColorChange($event)">
+    </div>
+
+    <div class="text-field">
+      <input step="5" min="0" max="100" [(ngModel)]="colorsService.opacity" type="range" (input)="onOpacityChange($event, color)">
+    </div>
+
+    <p class="mb-4">Opacity: {{ colorsService.opacity / 100 }}</p>
+
+    <div class="color-preview">&nbsp;</div>
+
+    <button
+      (click)="onAddColor(colorName, color)"
+      class="btn filled primary max-180 mt-4"
+    >Add Color</button>
+  </div>
+
+  <div class="col">
+    <div class="colors">
+      <div class="color" *ngFor="let color of colorsService.colors; index as i">
+        <div class="color-view" [style.background-color]="color.value">
+          <button class="color-delete" (click)="colorsService.removeColor(i)">X</button>
+        </div>
+        <p class="text-center">{{ color.value }}</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="text-field">
-  <input #color type="color" (change)="onColorChange($event)">
+<div class="flex justify-end">
+  <button
+    (click)="onCreateProject()"
+    [disabled]="createProjectForm.invalid"
+    [ngClass]="{'disabled': createProjectForm.invalid}"
+    class="btn filled primary max-180 mt-4"
+  >Create Project</button>
+  
+  <button
+    (click)="onDownload()"
+    [disabled]="!projectIsCreated"
+    [ngClass]="{'disabled': !projectIsCreated}"
+    class="btn filled primary max-180 mt-4 ml-2"
+  >Download</button>
+  
 </div>
-<div class="text-field">
-  <input step="5" min="0" max="100" [(ngModel)]="colorsService.opacity" type="range" (input)="onOpacityChange($event, color)">
-</div>
-<p class="mb-4">Opacity: {{ colorsService.opacity / 100 }}</p>
-<div class="color-preview"></div>
-
-<button
-  (click)="onAddColor(colorName, color)"
-  class="btn filled primary max-180 mt-4"
->Add Color</button>
-
-<button
-  (click)="onCreateProject()"
-  [disabled]="createProjectForm.invalid"
-  [ngClass]="{'disabled': createProjectForm.invalid}"
-  class="btn filled primary max-180 mt-4"
->Create Project</button>
-
-<!-- <a
-  [href]="downloadLink"
-  [ngClass]="{'disabled': !projectIsCreated}"
-  class="btn filled primary max-180 mt-4 ml-2"
->Download</a> -->
-
-<button
-  (click)="onDownload()"
-  [disabled]="!projectIsCreated"
-  [ngClass]="{'disabled': !projectIsCreated}"
-  class="btn filled primary max-180 mt-4 ml-2"
->Download</button>

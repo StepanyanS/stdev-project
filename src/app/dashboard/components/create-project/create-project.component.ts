@@ -42,14 +42,11 @@ export class CreateProjectComponent implements OnInit {
   }
 
   onCreateProject(): void {
-    console.log(this.projectIsCreated);
     const formData = this.createProjectForm.value;
     this.project = new Project(formData.projectName, this.colorsService.colors);
     this.projectsService.createProject(this.project)
       .subscribe((isCreated) => {
         this.projectIsCreated = isCreated;
-        console.log(this.projectIsCreated);
-        console.log(`Project ${formData.projectName} created`);
       });
   }
 

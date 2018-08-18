@@ -1,4 +1,8 @@
+// import native modules
 import { Injectable } from '@angular/core';
+
+// import models
+import { Color } from '../models/color.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +11,24 @@ export class ColorsService {
 
   colorPreview = 'rgba(0, 0, 0, 1)';
   opacity = 100;
-  colors = {};
+  colors: Color[] = [];
 
-  constructor() { }
+  constructor() {
+    this.colors = [
+      {
+        name: 'red',
+        value: '#ff0000'
+      },
+      {
+        name: 'green',
+        value: '#00ff00'
+      },
+      {
+        name: 'black',
+        value: '#000000'
+      }
+    ];
+   }
 
   private hex2RGBA(hex: string, opacity: number = 100): string {
     hex = hex.replace('#', '');
@@ -24,10 +43,18 @@ export class ColorsService {
     document.documentElement.style.setProperty('--color-background', this.colorPreview);
   }
 
-  public addColor(colorName: HTMLInputElement, color: HTMLInputElement) {
-    this.colors[colorName.value] = color.value;
-    colorName.value = '';
-    color.value = '#000000';
+  public addColor(name: HTMLInputElement, value: HTMLInputElement) {
+    const color = new Color(name.value, value.value);
+    this.colors.push(color);
+    name.value = '';
+    value.value = '#000000';
+    this.appllyColor(value.value);
+  }
+
+  removeColor(index: number) {
+    console.log(index);
+    this.colors.splice(index, 1);
+    console.log(this.colors);
   }
 
   public colorChange($event): void {
