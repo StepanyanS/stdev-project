@@ -17,12 +17,12 @@ export class ProjectsService {
   ) { }
 
   public createProject(project: Project): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:3000/api/create-project/', project);
+    return this.http.post<boolean>('http://localhost:3000/api/projects/create', project);
   }
 
   public downloadProject(projectName: string): Observable<Blob> {
     return this.http.get(
-      `http://localhost:3000/api/download-project/?projectName=${projectName}`,
+      `http://localhost:3000/api/projects/download?projectName=${projectName}`,
       { responseType: 'blob' }
     ).pipe(
       map(res => res)
