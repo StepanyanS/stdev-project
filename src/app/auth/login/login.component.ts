@@ -60,17 +60,26 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const formData = this.loginForm.value;
     this.usersService.getUserByEmail(formData.email)
-      .subscribe((user: User) => {
-          if (user && user.password === formData.password) {
-              window.localStorage.setItem('user', JSON.stringify(user));
-              this.authService.login();
-              this.router.navigate(['/dashboard/profile']);
-          } else {
-            this.showMessage({
-              text: 'The email or password you entered is incorrect, please try again',
-              type: 'danger'
-            });
-          }
-      });
+    .subscribe((user: User) => {
+
+      if (!user) {
+        this.showMessage({
+          text: 'Something went wrong',
+          type: 'danger'
+        });
+        return;
+      }
+
+      if (user && user.password === formData.password) {
+        window.localStorage.setItem('user', JSON.stringify(user));
+        this.authService.login();
+        this.router.navigate(['/dashboard/profile']);
+      } else {
+        this.showMessage({
+          text: 'The email or password you entered is incorrect, please try again',
+          type: 'danger'
+        });
+      }
+    });
   }
 }
