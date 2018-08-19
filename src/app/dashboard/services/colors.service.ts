@@ -45,6 +45,9 @@ export class ColorsService {
 
   public addColor(name: HTMLInputElement, value: HTMLInputElement) {
     const color = new Color(name.value, value.value);
+    if (this.colors.length === 0) {
+      document.documentElement.style.setProperty('--btn-background-color', color.value);
+    }
     this.colors.push(color);
     name.value = '';
     value.value = '#000000';

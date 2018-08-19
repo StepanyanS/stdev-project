@@ -64,4 +64,12 @@ export class CreateProjectComponent implements OnInit {
   onOpacityChange($event, color: HTMLInputElement): void {
     this.colorsService.opacityChange($event, color);
   }
+
+  onRadiusChange($event) {
+    document.documentElement.style.setProperty('--btn-border-radius', `${$event.target.value}px`);
+  }
+
+  onBorderWidthChange($event) {
+    document.documentElement.style.setProperty('--btn-border-width', `${$event.target.value}px`);
+  }
 }
