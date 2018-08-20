@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
           text: 'Something went wrong',
           type: 'danger'
         });
-        return;
+        return; 
       }
 
       if (user && user.password === formData.password) {
