@@ -8,17 +8,18 @@ export class AuthService {
     window.localStorage.clear();
   }
 
-  public login(): void {
+  public login(token: string): void {
+    window.localStorage.setItem('token', token);
     this.isAuthenticated = true;
   }
 
   public getUser(): User {
-    return JSON.parse(window.localStorage.getItem('user'));
+    return JSON.parse(window.localStorage.getItem('token'));
   }
 
   public isLoggedIn(): Promise<boolean> {
       return new Promise((res, rej) => {
-          const islogged = window.localStorage.getItem('user') ? true : false;
+          const islogged = window.localStorage.getItem('token') ? true : false;
           res(islogged);
       });
   }

@@ -17,20 +17,29 @@ import { AuthService } from '../../../shared/services/auth.service';
 export class ProfileComponent implements OnInit {
 
   user: User;
-  profileForm: FormGroup
+  profileForm: FormGroup;
 
   constructor(
-    private usersService: UsersService,
-    private authService: AuthService
+    private usersService: UsersService
   ) {}
 
   ngOnInit() {
-    this.user = Object.assign({}, this.authService.getUser());
     this.profileForm = new FormGroup({
-      'name': new FormControl(this.user.name),
-      'email': new FormControl(this.user.email),
+      'name': new FormControl(null),
+      'email': new FormControl(null),
       'password': new FormControl(null)
     });
+
+    this.usersService.getUser().subscribe(
+      (res) => {
+        this.user = res;
+        this.profileForm.setValue({
+          'name': this.user.name,
+          'email': this.user.email,
+          'password': null
+        });
+      }
+    );
   }
 
   onSubmit() {
