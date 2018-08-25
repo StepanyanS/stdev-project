@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
           text: 'Something went wrong',
           type: 'danger'
         });
-        return;
+        return; 
       }
 
       this.authService.login(res);
