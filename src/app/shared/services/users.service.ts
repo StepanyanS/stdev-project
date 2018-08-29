@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 interface IToken {
   token: string;
@@ -9,7 +10,6 @@ interface IToken {
 
 // import models
 import { User } from '../models/user.model';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,11 @@ export class UsersService {
   }
 
   public editUser(user: User): Observable<User> {
-    return this.http.put<User>('http://localhost:3000/api/users/', user);
+    return this.http.put<User>('http://localhost:3000/api/users/', user, {
+      headers: {
+        'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+      }
+    });
   }
 
   public loginUser(user: User): Observable<any> {

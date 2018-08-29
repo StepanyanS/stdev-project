@@ -27,7 +27,8 @@ export class ProfileComponent implements OnInit {
     this.profileForm = new FormGroup({
       'name': new FormControl(null),
       'email': new FormControl(null),
-      'password': new FormControl(null)
+      'password': new FormControl(null),
+      'newPassword': new FormControl(null)
     });
 
     this.usersService.getUser().subscribe(
@@ -36,7 +37,8 @@ export class ProfileComponent implements OnInit {
         this.profileForm.setValue({
           'name': this.user.name,
           'email': this.user.email,
-          'password': null
+          'password': null,
+          'newPassword': null
         });
       }
     );
@@ -45,8 +47,14 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     const userData = this.profileForm.value;
     this.usersService.editUser(userData)
-      .subscribe(() => {
-        console.log('Edited');
+      .subscribe((res) => {
+        this.user = res;
+        this.profileForm.setValue({
+          'name': this.user.name,
+          'email': this.user.email,
+          'password': null,
+          'newPassword': null
+        });
       });
   }
 
