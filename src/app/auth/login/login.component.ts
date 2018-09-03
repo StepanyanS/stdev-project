@@ -60,16 +60,17 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const formData = this.loginForm.value;
     this.usersService.loginUser(formData)
-    .subscribe((res: string | false) => {
-      if (!res) {
+    .subscribe((res) => {
+      console.log(res);
+      if (!res.status) {
         this.showMessage({
-          text: 'Something went wrong',
+          text: res.message,
           type: 'danger'
         });
-        return; 
+        return;
       }
 
-      this.authService.login(res);
+      this.authService.login(res.data);
       this.router.navigate(['/dashboard/profile']);
     });
   }

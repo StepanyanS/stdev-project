@@ -3,14 +3,14 @@
 <form [formGroup]="regForm" (submit)="onSubmit()">
   <div class="field-group">
 
-    <div class="text-field" [ngClass]="{'invalid': regForm.get('name').invalid && regForm.get('name').touched}">
+    <div class="text-field" [ngClass]="{'invalid': regForm.get('userName').invalid && regForm.get('userName').touched}">
       <input
-        id="name"
+        id="userName"
         type="text"
         placeholder="Developer Name"
-        formControlName="name"
+        formControlName="userName"
       >
-      <p *ngIf="regForm.get('name').invalid && regForm.get('name').touched" class="error-msg">Name can not be empty</p>
+      <p *ngIf="regForm.get('userName').invalid && regForm.get('userName').touched" class="error-msg">Name can not be empty</p>
     </div>
 
     <div class="text-field" [ngClass]="{'invalid': regForm.get('email').invalid && regForm.get('email').touched}">

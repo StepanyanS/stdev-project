@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profileForm = new FormGroup({
-      'name': new FormControl(null),
+      'userName': new FormControl(null),
       'email': new FormControl(null),
       'password': new FormControl(null),
       'newPassword': new FormControl(null)
@@ -33,13 +33,15 @@ export class ProfileComponent implements OnInit {
 
     this.usersService.getUser().subscribe(
       (res) => {
-        this.user = res;
-        this.profileForm.setValue({
-          'name': this.user.name,
-          'email': this.user.email,
-          'password': null,
-          'newPassword': null
-        });
+        if (res.status) {
+          this.user = res.data;
+          this.profileForm.setValue({
+            'userName': this.user.userName,
+            'email': this.user.email,
+            'password': null,
+            'newPassword': null
+          });
+        }
       }
     );
   }
@@ -50,7 +52,7 @@ export class ProfileComponent implements OnInit {
       .subscribe((res) => {
         this.user = res;
         this.profileForm.setValue({
-          'name': this.user.name,
+          'userName': this.user.userName,
           'email': this.user.email,
           'password': null,
           'newPassword': null

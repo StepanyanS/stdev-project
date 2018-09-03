@@ -1,12 +1,7 @@
-// import native modules
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {Router} from '@angular/router';
-
-// import services
+import { Router } from '@angular/router';
 import { UsersService } from '../../shared/services/users.service';
-
-// import modes
 import { User } from '../../shared/models/user.model';
 
 @Component({
@@ -25,7 +20,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.regForm = new FormGroup({
-      'name': new FormControl(null, [ Validators.required ]),
+      'userName': new FormControl(null, [ Validators.required ]),
       'email': new FormControl(null, [ Validators.required, Validators.email ], this.forbiddenEmails.bind(this)),
       'password': new FormControl(null, [ Validators.required, Validators.minLength(6) ]),
       'confirmPassword': new FormControl(null, [ Validators.required ])
@@ -33,12 +28,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    const {email, password, name} = this.regForm.value;
-    const userData  = new User(email, password, name);
-
+    const {email, password, userName} = this.regForm.value;
+    const userData  = new User(email, password, userName);
     this.usersService.AddNewUser(userData)
       .subscribe((res) => {
-        if (res) {
+        if (res.status) {
           this.router.navigate(['/login'], {
             queryParams: {
               nowCanLogin: true
@@ -51,11 +45,11 @@ export class RegistrationComponent implements OnInit {
   forbiddenEmails(control: FormControl): Promise<any> {
     return new Promise((res, rej) => {
       this.usersService.getUserByEmail(control.value).
-        subscribe((user: User) => {
-          if (user) {
-             res({
-               forbiddenEmail: true
-             });
+        subscribe((result: any) => {
+          if (result.data) {
+            res({
+              forbiddenEmail: true
+            });
           } else {
             res(null);
           }
