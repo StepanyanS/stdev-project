@@ -3,22 +3,28 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../../shared/services/users.service';
 import { User } from '../../shared/models/user.model';
+import { Message } from '../../shared/models/message.model';
+import { AuthBase } from '../auth.base';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent extends AuthBase implements OnInit {
 
   regForm: FormGroup;
+  message: Message;
 
   constructor(
     private usersService: UsersService,
     private router: Router
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() {
+    this.newMessage('', 'danger');
     this.regForm = new FormGroup({
       'userName': new FormControl(null, [ Validators.required ]),
       'email': new FormControl(null, [ Validators.required, Validators.email ], this.forbiddenEmails.bind(this)),
@@ -31,15 +37,25 @@ export class RegistrationComponent implements OnInit {
     const {email, password, userName} = this.regForm.value;
     const userData  = new User(email, password, userName);
     this.usersService.AddNewUser(userData)
-      .subscribe((res) => {
-        if (res.status) {
-          this.router.navigate(['/login'], {
-            queryParams: {
-              nowCanLogin: true
-            }
-          });
+      .subscribe(
+        res => {
+          if (res.status) {
+            this.router.navigate(['/login'], {
+              queryParams: {
+                nowCanLogin: true
+              }
+            });
+          }
+        },
+        err => {
+          if (!err.error.status) {
+            this.showMessage({
+              text: err.error.message,
+              type: 'danger'
+            });
+          }
         }
-      });
+      );
   }
 
   forbiddenEmails(control: FormControl): Promise<any> {

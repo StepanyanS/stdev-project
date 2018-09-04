@@ -59,6 +59,10 @@
       </p>
     </div>
 
+    <div *ngIf="message.text" class="text-field" [ngClass]="{'invalid': message.type === 'danger'}">
+      <p [ngClass]="{'error-msg': message.type === 'danger', 'success-msg': message.type === 'success'}">{{ message.text }}</p>
+    </div>
+
   </div>
 
   <button [disabled]="regForm.invalid" [ngClass]="{'disabled': regForm.invalid}" type="submit" class="mt-4 btn filled primary full-width">Registration</button>

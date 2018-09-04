@@ -16,8 +16,24 @@ export class ProjectsService {
     private http: HttpClient
   ) { }
 
-  public createProject(project: Project): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:3000/api/projects/create', project, {
+  public createProject(project: Project): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/api/projects', project, {
+      headers: {
+        'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+      }
+    });
+  }
+
+  public getProjects(): Observable<any> {
+    return this.http.get<any>('http://localhost:3000/api/projects', {
+      headers: {
+        'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+      }
+    });
+  }
+
+  public removeProject(id: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:3000/api/projects/${id}`, {
       headers: {
         'Authorization': `Bearer ${window.localStorage.getItem('token')}`
       }

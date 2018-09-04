@@ -9,6 +9,7 @@ import { AuthService } from '../../shared/services/auth.service';
 
 // import models
 import { User } from '../../shared/models/user.model';
+import { AuthBase } from '../auth.base';
 import { Message } from '../../shared/models/message.model';
 
 @Component({
@@ -16,20 +17,21 @@ import { Message } from '../../shared/models/message.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends AuthBase implements OnInit {
 
   loginForm: FormGroup;
-  message: Message;
 
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() {
-    this.message = new Message('', 'danger');
+    this.newMessage('', 'danger');
     this.route.queryParams
       .subscribe((params: Params) => {
         if (params['nowCanLogin']) {
@@ -50,28 +52,22 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  private showMessage(message: Message) {
-    this.message = message;
-    window.setTimeout(() => {
-      this.message.text = '';
-    }, 5000);
-  }
-
   onSubmit() {
     const formData = this.loginForm.value;
     this.usersService.loginUser(formData)
-    .subscribe((res) => {
-      console.log(res);
-      if (!res.status) {
-        this.showMessage({
-          text: res.message,
-          type: 'danger'
-        });
-        return;
+    .subscribe(
+      res => {
+        this.authService.login(res.data);
+        this.router.navigate(['/dashboard/profile']);
+      },
+      err => {
+        if (!err.error.status) {
+          this.showMessage({
+            text: err.error.message,
+            type: 'danger'
+          });
+        }
       }
-
-      this.authService.login(res.data);
-      this.router.navigate(['/dashboard/profile']);
-    });
+    );
   }
 }

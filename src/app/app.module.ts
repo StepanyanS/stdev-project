@@ -1,5 +1,6 @@
 // import native modules
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 // import self modules
@@ -17,6 +18,7 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     AuthModule
