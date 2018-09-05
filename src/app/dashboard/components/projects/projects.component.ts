@@ -43,7 +43,7 @@ export class ProjectsComponent implements OnInit {
     this.projectsService.removeProject(id)
       .subscribe(
         res => {
-          document.getElementById(id.toString()).hidden = true;
+          this.projects.splice(this.projects.findIndex((project) => project.id === id), 1);
         },
         err => {
           console.log(err.error);

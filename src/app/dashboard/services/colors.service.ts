@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 
 // import models
-import { Color } from '../models/color.model';
+import { Color } from '../models/project.model';
 
 @Injectable({
   providedIn: 'root'

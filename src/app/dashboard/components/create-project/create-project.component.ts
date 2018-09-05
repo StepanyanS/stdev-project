@@ -51,9 +51,9 @@ export class CreateProjectComponent implements OnInit {
   }
 
   onDownload() {
-    this.projectsService.downloadProject(this.project.name)
+    this.projectsService.downloadProject(this.project.projectName)
       .subscribe((blob) => {
-          saveAs(blob, `${this.project.name}.zip`);
+          saveAs(blob, `${this.project.projectName}.zip`);
       });
   }
 

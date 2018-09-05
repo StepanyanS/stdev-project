@@ -1,23 +1,33 @@
-export interface IColor {
+export class Color {
   readonly name: string;
   readonly value: string;
+
+  constructor(name: string, value: string) {
+    this.name = name;
+    this.value = value;
+  }
 }
 
+
 export interface IProjectData {
-  colors: IColor[];
+  colors: Color[];
   colorsSources: Object;
 }
 
 export class Project {
   id: number;
-  name: string;
+  projectName: string;
   date: Date;
   data: IProjectData;
 
   constructor(
     name: string,
-    colors: Object
+    colors: Color[]
   ) {
-
+    this.projectName = name;
+    this.data = {
+      colors: colors,
+      colorsSources: {}
+    };
   }
 }
