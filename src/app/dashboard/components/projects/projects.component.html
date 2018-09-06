@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody [@listStagger]="projects">
-    <tr [id]="project.id" *ngFor="let project of projects">
+    <tr [id]="project.id" *ngFor="let project of (projectsState | async).projects">
       <td>{{ project.name }}</td>
       <td>{{ project.date }}</td>
       <td>

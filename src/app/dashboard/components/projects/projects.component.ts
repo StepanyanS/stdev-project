@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from '../../models/project.model';
-import { ProjectsService } from '../../services/projects.service';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
+
+import { Observable } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+
+import { Project, Projects } from '../../models/project.model';
+import { ProjectsService } from '../../services/projects.service';
+import { AppState } from '../../redux/app.state';
 
 @Component({
   selector: 'app-projects',
@@ -24,19 +30,16 @@ import { trigger, transition, query, style, stagger, animate } from '@angular/an
 export class ProjectsComponent implements OnInit {
 
   projects: Project[];
+  public projectsState: Observable<Projects>;
 
-  constructor(private projectsService: ProjectsService) { }
+  constructor(
+    private projectsService: ProjectsService,
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit() {
-    this.projectsService.getProjects()
-      .subscribe(
-        res => {
-          this.projects = res.data;
-        },
-        err => {
-          console.log(err.error);
-        }
-      );
+    this.projectsService.getProjects();
+    this.projectsState = this.store.select('projectsPage');
   }
 
   onRemoveProject(id: number) {

@@ -6,6 +6,9 @@ import { map } from 'rxjs/operators';
 
 // import models
 import { Project } from '../models/project.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../redux/app.state';
+import { GetProjects } from './../redux/projects.action';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,8 @@ import { Project } from '../models/project.model';
 export class ProjectsService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private store: Store<AppState>
   ) { }
 
   public createProject(project: Project): Observable<any> {
@@ -24,12 +28,17 @@ export class ProjectsService {
     });
   }
 
-  public getProjects(): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/api/projects', {
+  public getProjects(): void {
+    this.http.get<any>('http://localhost:3000/api/projects', {
       headers: {
         'Authorization': `Bearer ${window.localStorage.getItem('token')}`
       }
-    });
+    })
+    .subscribe(
+      response => {
+        this.store.dispatch(new GetProjects(response.data));
+      }
+    );
   }
 
   public removeProject(id: number): Observable<any> {

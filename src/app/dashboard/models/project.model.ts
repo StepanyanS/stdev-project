@@ -31,3 +31,7 @@ export class Project {
     };
   }
 }
+
+export interface Projects {
+  projects: Project[];
+}
