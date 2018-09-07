@@ -7,8 +7,8 @@
     </tr>
   </thead>
   <tbody [@listStagger]="projects">
-    <tr [id]="project.id" *ngFor="let project of (projectsState | async).projects">
-      <td>{{ project.name }}</td>
+    <tr [id]="project.id" *ngFor="let project of (projectsState$ | async).projects">
+      <td>{{ project.projectName }}</td>
       <td>{{ project.date }}</td>
       <td>
         <button (click)="onRemoveProject(project.id)" style="color: red">X</button>

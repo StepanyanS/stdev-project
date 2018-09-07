@@ -16,6 +16,11 @@ export function projectsReducer(state = initialState, action: ProjectsActions) {
         ...state,
         projects: [...action.payload]
       };
+    case PROJECT_ACTION.DELETE_PROJECT:
+      return {
+        ...state,
+        projects: [...state.projects.filter((project) => project.id !== action.payload)]
+      };
     default:
       return state;
   }

@@ -30,7 +30,7 @@ import { AppState } from '../../redux/app.state';
 export class ProjectsComponent implements OnInit {
 
   projects: Project[];
-  public projectsState: Observable<Projects>;
+  public projectsState$: Observable<Projects>;
 
   constructor(
     private projectsService: ProjectsService,
@@ -38,20 +38,11 @@ export class ProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.projectsService.getProjects();
-    this.projectsState = this.store.select('projectsPage');
+    this.projectsState$ = this.store.select('projectsPage');
   }
 
-  onRemoveProject(id: number) {
-    this.projectsService.removeProject(id)
-      .subscribe(
-        res => {
-          this.projects.splice(this.projects.findIndex((project) => project.id === id), 1);
-        },
-        err => {
-          console.log(err.error);
-        }
-      );
+  onRemoveProject(id: number): void {
+    this.projectsService.removeProject(id);
   }
 
 }

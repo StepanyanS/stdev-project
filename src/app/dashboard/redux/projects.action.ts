@@ -4,6 +4,7 @@ import { Project } from '../models/project.model';
 export namespace PROJECT_ACTION {
   export const ADD_PROJECT = 'ADD_PROJECT';
   export const GET_PROJECTS = 'GET_PROJECTS';
+  export const DELETE_PROJECT = 'DELETE_PROJECT';
 }
 
 export class AddProject implements Action {
@@ -18,4 +19,10 @@ export class GetProjects implements Action {
   constructor(public payload: Project[]) {}
 }
 
-export type ProjectsActions = AddProject | GetProjects;
+export class DeleteProject implements Action {
+  readonly type =  PROJECT_ACTION.DELETE_PROJECT;
+
+  constructor(public payload: number) {}
+}
+
+export type ProjectsActions = AddProject | GetProjects | DeleteProject;

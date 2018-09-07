@@ -1,13 +1,14 @@
-// import native modules
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { saveAs } from 'file-saver/FileSaver';
+import { Store } from '@ngrx/store';
 
-// import services
+import { AppState } from './../../redux/app.state';
+import { AddProject } from './../../redux/projects.action';
+
 import { ProjectsService } from '../../services/projects.service';
 import { ColorsService } from './../../services/colors.service';
 
-// import models
 import { Project } from '../../models/project.model';
 
 @Component({
@@ -15,7 +16,7 @@ import { Project } from '../../models/project.model';
   templateUrl: './create-project.component.html',
   styleUrls: ['./create-project.component.scss']
 })
-export class CreateProjectComponent implements OnInit {
+export class CreateProjectComponent {
 
   createProjectForm: FormGroup;
 
@@ -26,15 +27,12 @@ export class CreateProjectComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private projectsService: ProjectsService,
-    public colorsService: ColorsService
+    public colorsService: ColorsService,
+    private store: Store<AppState>
   ) {
     this.createProjectForm = this.formBuilder.group({
-      projectName: [null, Validators.required]
+      'projectName': [null, Validators.required]
     });
-  }
-
-  ngOnInit() {
-
   }
 
   onAddColor(colorName: HTMLInputElement, color: HTMLInputElement): void {
@@ -45,9 +43,13 @@ export class CreateProjectComponent implements OnInit {
     const formData = this.createProjectForm.value;
     this.project = new Project(formData.projectName, this.colorsService.colors);
     this.projectsService.createProject(this.project)
-      .subscribe((isCreated) => {
-        this.projectIsCreated = isCreated;
-      });
+      .subscribe(
+        res => {
+          this.store.dispatch(new AddProject(res.data));
+          this.projectIsCreated = true;
+        },
+        err => this.projectIsCreated = false
+      );
   }
 
   onDownload() {

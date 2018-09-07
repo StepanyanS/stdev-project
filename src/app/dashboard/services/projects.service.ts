@@ -1,14 +1,14 @@
-// import native modules
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-// import models
-import { Project } from '../models/project.model';
 import { Store } from '@ngrx/store';
+
+import { Project } from '../models/project.model';
 import { AppState } from '../redux/app.state';
-import { GetProjects } from './../redux/projects.action';
+import { GetProjects, DeleteProject } from './../redux/projects.action';
 
 @Injectable({
   providedIn: 'root'
@@ -41,12 +41,15 @@ export class ProjectsService {
     );
   }
 
-  public removeProject(id: number): Observable<any> {
-    return this.http.delete<any>(`http://localhost:3000/api/projects/${id}`, {
+  public removeProject(id: number): void {
+    this.http.delete<any>(`http://localhost:3000/api/projects/${id}`, {
       headers: {
         'Authorization': `Bearer ${window.localStorage.getItem('token')}`
       }
-    });
+    })
+    .subscribe(
+      response => this.store.dispatch(new DeleteProject(id))
+    );
   }
 
   public downloadProject(projectName: string): Observable<Blob> {
