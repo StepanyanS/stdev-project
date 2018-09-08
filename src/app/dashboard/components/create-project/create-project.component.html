@@ -68,7 +68,7 @@
 <div class="flex justify-end">
   <button
     (click)="onCreateProject()"
-    [disabled]="createProjectForm.invalid"
+    [disabled]="createProjectForm.invalid || projectIsCreated"
     [ngClass]="{'disabled': createProjectForm.invalid}"
     class="btn filled primary max-180 mt-4"
   >Create Project</button>

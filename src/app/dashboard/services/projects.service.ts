@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { Project } from '../models/project.model';
 import { AppState } from '../redux/app.state';
 import { GetProjects, DeleteProject } from './../redux/projects.action';
+import { IResult } from './../../shared/models/result';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class ProjectsService {
     private store: Store<AppState>
   ) { }
 
-  public createProject(project: Project): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/api/projects', project, {
+  public createProject(project: Project): Observable<IResult> {
+    return this.http.post<IResult>('http://localhost:3000/api/projects', project, {
       headers: {
         'Authorization': `Bearer ${window.localStorage.getItem('token')}`
       }
@@ -29,7 +30,7 @@ export class ProjectsService {
   }
 
   public getProjects(): void {
-    this.http.get<any>('http://localhost:3000/api/projects', {
+    this.http.get<IResult>('http://localhost:3000/api/projects', {
       headers: {
         'Authorization': `Bearer ${window.localStorage.getItem('token')}`
       }
@@ -42,7 +43,7 @@ export class ProjectsService {
   }
 
   public removeProject(id: number): void {
-    this.http.delete<any>(`http://localhost:3000/api/projects/${id}`, {
+    this.http.delete<IResult>(`http://localhost:3000/api/projects/${id}`, {
       headers: {
         'Authorization': `Bearer ${window.localStorage.getItem('token')}`
       }

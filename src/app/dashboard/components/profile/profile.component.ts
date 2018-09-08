@@ -7,7 +7,7 @@ import { User } from '../../../shared/models/user.model';
 
 // import services
 import { UsersService } from '../../../shared/services/users.service';
-import { AuthService } from '../../../shared/services/auth.service';
+import { IResult } from './../../../shared/models/result';
 
 @Component({
   selector: 'app-profile',
@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
     });
 
     this.usersService.getUser().subscribe(
-      (res) => {
+      (res: IResult) => {
         if (res.status) {
           this.user = res.data;
           this.profileForm.setValue({
@@ -49,8 +49,8 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     const userData = this.profileForm.value;
     this.usersService.editUser(userData)
-      .subscribe((res) => {
-        this.user = res;
+      .subscribe((res: IResult) => {
+        Object.assign(this.user, res.data);
         this.profileForm.setValue({
           'userName': this.user.userName,
           'email': this.user.email,

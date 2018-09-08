@@ -5,6 +5,7 @@ import { UsersService } from '../../shared/services/users.service';
 import { User } from '../../shared/models/user.model';
 import { Message } from '../../shared/models/message.model';
 import { AuthBase } from '../auth.base';
+import { IResult } from './../../shared/models/result';
 
 @Component({
   selector: 'app-registration',
@@ -38,7 +39,7 @@ export class RegistrationComponent extends AuthBase implements OnInit {
     const userData  = new User(email, password, userName);
     this.usersService.AddNewUser(userData)
       .subscribe(
-        res => {
+        (res: IResult) => {
           if (res.status) {
             this.router.navigate(['/login'], {
               queryParams: {
@@ -61,7 +62,7 @@ export class RegistrationComponent extends AuthBase implements OnInit {
   forbiddenEmails(control: FormControl): Promise<any> {
     return new Promise((res, rej) => {
       this.usersService.getUserByEmail(control.value).
-        subscribe((result: any) => {
+        subscribe((result: IResult) => {
           if (result.data) {
             res({
               forbiddenEmail: true

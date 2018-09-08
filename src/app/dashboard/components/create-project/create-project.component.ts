@@ -10,6 +10,7 @@ import { ProjectsService } from '../../services/projects.service';
 import { ColorsService } from './../../services/colors.service';
 
 import { Project } from '../../models/project.model';
+import { IResult } from '../../../shared/models/result';
 
 @Component({
   selector: 'app-create-project',
@@ -44,7 +45,7 @@ export class CreateProjectComponent {
     this.project = new Project(formData.projectName, this.colorsService.colors);
     this.projectsService.createProject(this.project)
       .subscribe(
-        res => {
+        (res: IResult) => {
           this.store.dispatch(new AddProject(res.data));
           this.projectIsCreated = true;
         },
