@@ -7,7 +7,7 @@ import { User } from '../../../shared/models/user.model';
 
 // import services
 import { UsersService } from '../../../shared/services/users.service';
-import { AuthService } from '../../../shared/services/auth.service';
+import { IResult } from './../../../shared/models/result';
 
 @Component({
   selector: 'app-profile',
@@ -25,19 +25,23 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profileForm = new FormGroup({
-      'name': new FormControl(null),
+      'userName': new FormControl(null),
       'email': new FormControl(null),
-      'password': new FormControl(null)
+      'password': new FormControl(null),
+      'newPassword': new FormControl(null)
     });
 
     this.usersService.getUser().subscribe(
-      (res) => {
-        this.user = res;
-        this.profileForm.setValue({
-          'name': this.user.name,
-          'email': this.user.email,
-          'password': null
-        });
+      (res: IResult) => {
+        if (res.status) {
+          this.user = res.data;
+          this.profileForm.setValue({
+            'userName': this.user.userName,
+            'email': this.user.email,
+            'password': null,
+            'newPassword': null
+          });
+        }
       }
     );
   }
@@ -45,8 +49,14 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     const userData = this.profileForm.value;
     this.usersService.editUser(userData)
-      .subscribe(() => {
-        console.log('Edited');
+      .subscribe((res: IResult) => {
+        Object.assign(this.user, res.data);
+        this.profileForm.setValue({
+          'userName': this.user.userName,
+          'email': this.user.email,
+          'password': null,
+          'newPassword': null
+        });
       });
   }
 

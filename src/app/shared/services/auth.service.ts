@@ -18,9 +18,9 @@ export class AuthService {
   }
 
   public isLoggedIn(): Promise<boolean> {
-      return new Promise((res, rej) => {
-          const islogged = window.localStorage.getItem('token') ? true : false;
-          res(islogged);
-      });
+    return new Promise((res, rej) => {
+      const islogged = window.localStorage.getItem('token') ? true : false;
+      res(islogged);
+    });
   }
 }

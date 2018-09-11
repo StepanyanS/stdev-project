@@ -1,15 +1,10 @@
-// import native modules
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-interface IToken {
-  token: string;
-}
+import { Observable } from 'rxjs';
 
-// import models
 import { User } from '../models/user.model';
-import { map } from 'rxjs/operators';
+import { IResult } from '../models/result';
 
 @Injectable({
   providedIn: 'root'
@@ -20,28 +15,31 @@ export class UsersService {
     private http: HttpClient
   ) { }
 
-  public getUserByEmail(email: string): Observable<User> {
-    return this.http.get<User>(`http://localhost:3000/api/users/?email=${email}`);
+  public getUserByEmail(email: string): Observable<IResult> {
+    return this.http.get<IResult>(`http://localhost:3000/api/users/check/?email=${email}`);
   }
 
-  public AddNewUser(user: User): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:3000/api/users/', user);
+  public AddNewUser(user: User): Observable<IResult> {
+    return this.http.post<IResult>('http://localhost:3000/api/users/', user);
   }
 
-  public getUser(): Observable<User> {
-    return this.http.get<User>(`http://localhost:3000/api/users/`, {
+  public getUser(): Observable<IResult> {
+    return this.http.get<IResult>(`http://localhost:3000/api/users/`, {
       headers: {
         'Authorization': `Bearer ${window.localStorage.getItem('token')}`
       }
     });
   }
 
-  public editUser(user: User): Observable<User> {
-    return this.http.put<User>('http://localhost:3000/api/users/', user);
+  public editUser(user: User): Observable<IResult> {
+    return this.http.put<IResult>('http://localhost:3000/api/users/', user, {
+      headers: {
+        'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+      }
+    });
   }
 
-  public loginUser(user: User): Observable<any> {
-    return this.http.post('http://localhost:3000/api/users/login', user)
-    .pipe(map((res: IToken) => res.token));
+  public loginUser(user: User): Observable<IResult> {
+    return this.http.post<IResult>('http://localhost:3000/api/users/login', user);
   }
 }

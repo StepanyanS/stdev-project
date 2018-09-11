@@ -3,14 +3,14 @@
 <form [formGroup]="regForm" (submit)="onSubmit()">
   <div class="field-group">
 
-    <div class="text-field" [ngClass]="{'invalid': regForm.get('name').invalid && regForm.get('name').touched}">
+    <div class="text-field" [ngClass]="{'invalid': regForm.get('userName').invalid && regForm.get('userName').touched}">
       <input
-        id="name"
+        id="userName"
         type="text"
         placeholder="Developer Name"
-        formControlName="name"
+        formControlName="userName"
       >
-      <p *ngIf="regForm.get('name').invalid && regForm.get('name').touched" class="error-msg">Name can not be empty</p>
+      <p *ngIf="regForm.get('userName').invalid && regForm.get('userName').touched" class="error-msg">Name can not be empty</p>
     </div>
 
     <div class="text-field" [ngClass]="{'invalid': regForm.get('email').invalid && regForm.get('email').touched}">
@@ -57,6 +57,10 @@
           <!--You have entered {{regForm.get('password')['errors']['minlength']['actualLength']}}-->
         <!--</span>-->
       </p>
+    </div>
+
+    <div *ngIf="message.text" class="text-field" [ngClass]="{'invalid': message.type === 'danger'}">
+      <p [ngClass]="{'error-msg': message.type === 'danger', 'success-msg': message.type === 'success'}">{{ message.text }}</p>
     </div>
 
   </div>
