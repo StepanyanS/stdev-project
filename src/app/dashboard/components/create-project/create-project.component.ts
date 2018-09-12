@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { saveAs } from 'file-saver/FileSaver';
 import { Store } from '@ngrx/store';
@@ -11,17 +11,20 @@ import { ColorsService } from './../../services/colors.service';
 
 import { Project } from '../../models/project.model';
 import { IResult } from '../../../shared/models/result';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
   styleUrls: ['./create-project.component.scss']
 })
-export class CreateProjectComponent {
+export class CreateProjectComponent implements OnInit {
 
   createProjectForm: FormGroup;
 
   project: Project;
+
+  outlineChecked: boolean;
 
   projectIsCreated = false;
 
@@ -34,6 +37,14 @@ export class CreateProjectComponent {
     this.createProjectForm = this.formBuilder.group({
       'projectName': [null, Validators.required]
     });
+  }
+
+  ngOnInit() {
+
+  }
+
+  onOutlineCheck($event) {
+
   }
 
   onAddColor(colorName: HTMLInputElement, color: HTMLInputElement): void {

@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+
 import { StoreModule } from '@ngrx/store';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AuthModule} from './auth/auth.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
 
-import {AuthGuard} from './services/auth.guard';
+import { AuthGuard } from './services/auth.guard';
 
 import { AppComponent } from './app.component';
 
