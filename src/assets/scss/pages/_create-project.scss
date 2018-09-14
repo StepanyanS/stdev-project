@@ -1,10 +1,10 @@
 :root {
-  --color-background: rgba(0, 0, 0, 1);
+  --color-background: #000000;
   --btn-border-radius: 5px;
-  --btn-border-width: 0;
-  --btn-border-style: solid;
   --btn-height: 45px;
   --btn-background-color: transparent;
+  --btn-border-width: 0;
+  --btn-border-style: solid;
 }
 
 .color-preview {
@@ -66,10 +66,16 @@
 .button-preview {
   color: #fff;
   padding: 0 5px;
+  border: 0;
   background-color: var(--btn-background-color);
-  border-width: var(--btn-border-width);
-  border-style: var(--btn-border-style);
   height: var(--btn-height);
   border-radius: var(--btn-border-radius);
   cursor: pointer;
+  color: #000;
+
+  &.outline {
+    border-color: #000;
+    border-width: var(--btn-border-width);
+    border-style: var(--btn-border-style);
+  }
 }

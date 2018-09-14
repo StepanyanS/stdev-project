@@ -11,12 +11,10 @@ import { ColorsService } from './../../services/colors.service';
 
 import { Project } from '../../models/project.model';
 import { IResult } from '../../../shared/models/result';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-create-project',
-  templateUrl: './create-project.component.html',
-  styleUrls: ['./create-project.component.scss']
+  templateUrl: './create-project.component.html'
 })
 export class CreateProjectComponent implements OnInit {
 
@@ -24,27 +22,23 @@ export class CreateProjectComponent implements OnInit {
 
   project: Project;
 
-  outlineChecked: boolean;
+  outlineChecked = false;
 
   projectIsCreated = false;
+
+  borderWidth = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private projectsService: ProjectsService,
     public colorsService: ColorsService,
     private store: Store<AppState>
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.createProjectForm = this.formBuilder.group({
       'projectName': [null, Validators.required]
     });
-  }
-
-  ngOnInit() {
-
-  }
-
-  onOutlineCheck($event) {
-
   }
 
   onAddColor(colorName: HTMLInputElement, color: HTMLInputElement): void {
@@ -75,15 +69,21 @@ export class CreateProjectComponent implements OnInit {
     this.colorsService.colorChange($event);
   }
 
-  onOpacityChange($event, color: HTMLInputElement): void {
-    this.colorsService.opacityChange($event, color);
-  }
-
   onRadiusChange($event) {
     document.documentElement.style.setProperty('--btn-border-radius', `${$event.target.value}px`);
   }
 
-  onBorderWidthChange($event) {
-    document.documentElement.style.setProperty('--btn-border-width', `${$event.target.value}px`);
+  onOutlineCheck($event): void {
+    if(!$event.checked) {
+      this.borderWidth = '';
+      this.setBorder();
+      return;
+    }
+    this.borderWidth = '1';
+    this.setBorder();
+  }
+  
+  setBorder(): void {
+    document.documentElement.style.setProperty('--btn-border-width', `${this.borderWidth}px`);
   }
 }

@@ -1,6 +1,6 @@
 .text-field {
-    position: relative;
-    padding: 20px 0;
+  position: relative;
+  padding: 20px 0;
 
   input {
     width: 100%;
@@ -31,6 +31,22 @@
   .success-msg {
     @extend .error-msg;
     color: $color-success;
+  }
+
+  &.with-label {
+    input {
+      padding-left: 30px;
+    }
+
+    &::before {
+      content: attr(data-unit);
+      font-size: 16px;
+      color: #ccc;
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }
 

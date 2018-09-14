@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxModule, MatStepperModule } from '@angular/material';
 
 // import services
 import { AuthService } from './services/auth.service';
@@ -17,7 +17,8 @@ import { UsersService } from './services/users.service';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatStepperModule
   ],
   providers: [
     AuthService,

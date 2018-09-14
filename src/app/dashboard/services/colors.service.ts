@@ -1,7 +1,5 @@
-// import native modules
 import { Injectable } from '@angular/core';
 
-// import models
 import { Color } from '../models/project.model';
 
 @Injectable({
@@ -9,7 +7,7 @@ import { Color } from '../models/project.model';
 })
 export class ColorsService {
 
-  colorPreview = 'rgba(0, 0, 0, 1)';
+  colorPreview = '#000000';
   opacity = 100;
   colors: Color[] = [];
 
@@ -30,41 +28,28 @@ export class ColorsService {
     ];
    }
 
-  private hex2RGBA(hex: string, opacity: number = 100): string {
-    hex = hex.replace('#', '');
-    const r = parseInt(hex.substring(0, 2), 16);
-    const g = parseInt(hex.substring(2, 4), 16);
-    const b = parseInt(hex.substring(4, 6), 16);
-    return `rgba(${r},${g}, ${b}, ${opacity / 100})`;
-  }
-
-  private appllyColor(hex: string, opacity: number = 100): void {
-    this.colorPreview = this.hex2RGBA(hex, opacity);
-    document.documentElement.style.setProperty('--color-background', this.colorPreview);
+  private appllyColor(hex: string): void {
+    document.documentElement.style.setProperty('--color-background', `#${hex}`);
   }
 
   public addColor(name: HTMLInputElement, value: HTMLInputElement) {
-    const color = new Color(name.value, value.value);
+    const color = new Color(name.value, `#${value.value}`);
     if (this.colors.length === 0) {
       document.documentElement.style.setProperty('--btn-background-color', color.value);
     }
     this.colors.push(color);
     name.value = '';
-    value.value = '#000000';
-    this.appllyColor(value.value);
+    value.value = '';
+    this.appllyColor('000000');
   }
 
   removeColor(index: number) {
-    console.log(index);
     this.colors.splice(index, 1);
-    console.log(this.colors);
   }
 
   public colorChange($event): void {
-    this.appllyColor($event.target.value);
-  }
-
-  public opacityChange($event, color: HTMLInputElement): void {
-    this.appllyColor(color.value, $event.target.value);
+    if($event.target.value.length === 6) {
+      this.appllyColor($event.target.value);
+    }
   }
 }
