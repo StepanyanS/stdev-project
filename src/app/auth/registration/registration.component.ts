@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { UsersService } from '../../shared/services/users.service';
 import { User } from '../../shared/models/user.model';
 import { Message } from '../../shared/models/message.model';
@@ -9,8 +10,7 @@ import { IResult } from './../../shared/models/result';
 
 @Component({
   selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  templateUrl: './registration.component.html'
 })
 export class RegistrationComponent extends AuthBase implements OnInit {
 

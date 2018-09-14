@@ -8,7 +8,6 @@ export class Color {
   }
 }
 
-
 export interface IProjectData {
   colors: Color[];
   colorsSources: Object;

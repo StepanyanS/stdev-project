@@ -1,18 +1,14 @@
-// import native modules
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
-// import models
 import { User } from '../../../shared/models/user.model';
 
-// import services
 import { UsersService } from '../../../shared/services/users.service';
 import { IResult } from './../../../shared/models/result';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  templateUrl: './profile.component.html'
 })
 export class ProfileComponent implements OnInit {
 

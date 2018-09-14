@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { saveAs } from 'file-saver/FileSaver';
 import { Store } from '@ngrx/store';
@@ -74,7 +74,7 @@ export class CreateProjectComponent implements OnInit {
   }
 
   onOutlineCheck($event): void {
-    if(!$event.checked) {
+    if (!$event.checked) {
       this.borderWidth = '';
       this.setBorder();
       return;
@@ -82,7 +82,7 @@ export class CreateProjectComponent implements OnInit {
     this.borderWidth = '1';
     this.setBorder();
   }
-  
+
   setBorder(): void {
     document.documentElement.style.setProperty('--btn-border-width', `${this.borderWidth}px`);
   }

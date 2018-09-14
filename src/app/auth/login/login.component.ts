@@ -1,21 +1,15 @@
-// import native modules
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-// import services
 import { UsersService } from '../../shared/services/users.service';
 import { AuthService } from '../../shared/services/auth.service';
 
-// import models
-import { User } from '../../shared/models/user.model';
 import { AuthBase } from '../auth.base';
-import { Message } from '../../shared/models/message.model';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent extends AuthBase implements OnInit {
 

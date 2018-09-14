@@ -1,12 +1,9 @@
-// import native modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// import self modules
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
-// import components
 import { DashboardComponent } from './dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CreateProjectComponent } from './components/create-project/create-project.component';

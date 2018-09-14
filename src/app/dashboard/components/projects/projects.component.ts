@@ -12,7 +12,6 @@ import { AppState } from '../../redux/app.state';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss'],
   animations: [
     trigger('listStagger', [
       transition('* <=> *', [

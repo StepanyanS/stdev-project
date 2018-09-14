@@ -1,9 +1,7 @@
-// import native modules
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-// import services
 import { AuthService } from '../shared/services/auth.service';
 
 @Injectable({
