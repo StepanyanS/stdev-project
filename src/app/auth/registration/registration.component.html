@@ -52,10 +52,11 @@
       >
       <p *ngIf="regForm.get('confirmPassword').invalid && regForm.get('confirmPassword').touched" class="error-msg">
         <span *ngIf="regForm.get('confirmPassword')['errors']['required']">Confirm Password can not be empty</span>
-        <!--<span *ngIf="regForm.get('email')['errors']['minlength']">-->
-          <!--Password must be at least {{regForm.get('password')['errors']['minlength']['requiredLength']}} characters.-->
-          <!--You have entered {{regForm.get('password')['errors']['minlength']['actualLength']}}-->
-        <!--</span>-->
+        <span *ngIf="regForm.get('confirmPassword')['errors']['minlength']">
+          Confirm Password must be at least {{regForm.get('confirmPassword')['errors']['minlength']['requiredLength']}} characters.
+          You have entered {{regForm.get('confirmPassword')['errors']['minlength']['actualLength']}}
+        </span>
+        <span *ngIf="regForm.get('email')['errors']['confirmPassword']">Passwords don't match.</span>
       </p>
     </div>
 

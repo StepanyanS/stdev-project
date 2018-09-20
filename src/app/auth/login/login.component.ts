@@ -5,13 +5,13 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UsersService } from '../../shared/services/users.service';
 import { AuthService } from '../../shared/services/auth.service';
 
-import { AuthBase } from '../auth.base';
+import { MessageBase } from '../../shared/message.base';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
-export class LoginComponent extends AuthBase implements OnInit {
+export class LoginComponent extends MessageBase implements OnInit {
 
   loginForm: FormGroup;
 

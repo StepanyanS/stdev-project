@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatCheckboxModule, MatStepperModule, MatIconModule } from '@angular/material';
+import { MatCheckboxModule, MatStepperModule, MatIconModule, MatProgressSpinnerModule } from '@angular/material';
 
 import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
@@ -18,7 +18,8 @@ import { UsersService } from './services/users.service';
     HttpClientModule,
     MatCheckboxModule,
     MatStepperModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AuthService,

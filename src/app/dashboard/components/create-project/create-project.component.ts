@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { saveAs } from 'file-saver/FileSaver';
+
 import { Store } from '@ngrx/store';
+
+import { saveAs } from 'file-saver/FileSaver';
 
 import { AppState } from './../../redux/app.state';
 import { AddProject } from './../../redux/projects.action';
@@ -11,12 +13,16 @@ import { ColorsService } from './../../services/colors.service';
 
 import { Project } from '../../models/project.model';
 import { IResult } from '../../../shared/models/result';
+import { Message } from '../../../shared/models/message.model';
+import { MessageBase } from '../../../shared/message.base';
 
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html'
 })
-export class CreateProjectComponent implements OnInit {
+export class CreateProjectComponent extends MessageBase implements OnInit {
+
+  message: Message;
 
   createProjectForm: FormGroup;
 
@@ -25,6 +31,7 @@ export class CreateProjectComponent implements OnInit {
   outlineChecked = false;
 
   projectIsCreated = false;
+  projectIsCreating = false;
 
   private currentProjectId: number;
 
@@ -35,12 +42,15 @@ export class CreateProjectComponent implements OnInit {
     private projectsService: ProjectsService,
     public colorsService: ColorsService,
     private store: Store<AppState>
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.createProjectForm = this.formBuilder.group({
       projectName: [null, Validators.required]
     });
+    this.newMessage('', 'success');
   }
 
   onAddColor(colorName: HTMLInputElement, color: HTMLInputElement): void {
@@ -48,6 +58,7 @@ export class CreateProjectComponent implements OnInit {
   }
 
   onCreateProject(): void {
+    this.projectIsCreating = true;
     const formData = this.createProjectForm.value;
     this.project = new Project(formData.projectName, this.colorsService.colors);
     this.projectsService.createProject(this.project)
@@ -56,8 +67,20 @@ export class CreateProjectComponent implements OnInit {
           this.store.dispatch(new AddProject(res.data));
           this.currentProjectId = res.data.id;
           this.projectIsCreated = true;
+          this.projectIsCreating = false;
+          this.showMessage({
+            text: res.message,
+            type: 'success'
+          });
         },
-        err => this.projectIsCreated = false
+        err => {
+          this.projectIsCreated = false;
+          this.projectIsCreating = false;
+          this.showMessage({
+            text: err.error.message,
+            type: 'danger'
+          });
+        }
       );
   }
 
