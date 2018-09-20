@@ -2,7 +2,7 @@
   --color-background: #000000;
   --btn-border-radius: 5px;
   --btn-height: 45px;
-  --btn-background-color: transparent;
+  --btn-background-color: black;
   --btn-border-width: 0;
   --btn-border-style: solid;
 }
@@ -65,13 +65,12 @@
 
 .button-preview {
   color: #fff;
-  padding: 0 5px;
+  padding: 0 15px;
   border: 0;
   background-color: var(--btn-background-color);
   height: var(--btn-height);
   border-radius: var(--btn-border-radius);
   cursor: pointer;
-  color: #000;
 
   &.outline {
     border-color: #000;

@@ -11,6 +11,7 @@
       <td>{{ project.projectName }}</td>
       <td>{{ project.date }}</td>
       <td>
+        <button (click)="onDownload(project.id, project.projectName)">Download</button>
         <button (click)="onRemoveProject(project.id)" style="color: red">X</button>
       </td>
     </tr>

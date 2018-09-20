@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
+import { saveAs } from 'file-saver/FileSaver';
 
 import { Observable } from 'rxjs';
 
@@ -38,6 +39,13 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.projectsState$ = this.store.select('projectsPage');
+  }
+
+  onDownload(id: number, name: string) {
+    this.projectsService.downloadProject(id)
+      .subscribe((blob) => {
+        saveAs(blob, `${name}.zip`);
+      });
   }
 
   onRemoveProject(id: number): void {

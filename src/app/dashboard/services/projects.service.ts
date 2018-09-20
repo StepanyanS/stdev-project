@@ -53,9 +53,9 @@ export class ProjectsService {
     );
   }
 
-  public downloadProject(projectName: string): Observable<Blob> {
+  public downloadProject(projectId: number): Observable<any> {
     return this.http.get(
-      `http://localhost:3000/api/projects/download?projectName=${projectName}`,
+      `http://localhost:3000/api/projects/download/${projectId}`,
       {
         responseType: 'blob',
         headers: {

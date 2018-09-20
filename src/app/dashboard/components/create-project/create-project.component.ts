@@ -20,13 +20,15 @@ export class CreateProjectComponent implements OnInit {
 
   createProjectForm: FormGroup;
 
-  project: Project;
+  private project: Project;
 
   outlineChecked = false;
 
   projectIsCreated = false;
 
-  borderWidth = '';
+  private currentProjectId: number;
+
+  private borderWidth = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,7 +39,7 @@ export class CreateProjectComponent implements OnInit {
 
   ngOnInit() {
     this.createProjectForm = this.formBuilder.group({
-      'projectName': [null, Validators.required]
+      projectName: [null, Validators.required]
     });
   }
 
@@ -52,6 +54,7 @@ export class CreateProjectComponent implements OnInit {
       .subscribe(
         (res: IResult) => {
           this.store.dispatch(new AddProject(res.data));
+          this.currentProjectId = res.data.id;
           this.projectIsCreated = true;
         },
         err => this.projectIsCreated = false
@@ -59,7 +62,7 @@ export class CreateProjectComponent implements OnInit {
   }
 
   onDownload() {
-    this.projectsService.downloadProject(this.project.projectName)
+    this.projectsService.downloadProject(this.currentProjectId)
       .subscribe((blob) => {
           saveAs(blob, `${this.project.projectName}.zip`);
       });

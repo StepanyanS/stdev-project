@@ -1,111 +1,17 @@
 <h1>Create Project</h1>
 
-<!-- <form class="mt-4" [formGroup]="createProjectForm" (submit)="onCreateProject()">
-  <div class="text-field" [ngClass]="{'invalid': createProjectForm.get('projectName').invalid && createProjectForm.get('projectName').touched}">
-    <input
-      id="projectName"
-      type="text"
-      formControlName="projectName"
-      placeholder="Project Name"
-    >
-    <p *ngIf="createProjectForm.get('projectName').invalid && createProjectForm.get('projectName').touched" class="error-msg">Project name must be filled</p>
-  </div>
-</form>
-
-<div class="cols-md-2 mt-5">
-  <div class="col">
-
-    <div class="text-field">
-      <input #colorName type="text" placeholder="Color Name">
-    </div>
-
-    <div class="text-field">
-      <input #color type="color" (change)="onColorChange($event)">
-    </div>
-
-    <div class="text-field">
-      <input step="5" min="0" max="100" [(ngModel)]="colorsService.opacity" type="range" (input)="onOpacityChange($event, color)">
-    </div>
-
-    <p class="mb-4">Opacity: {{ colorsService.opacity / 100 }}</p>
-
-    <div class="color-preview">&nbsp;</div>
-
-    <button
-      (click)="onAddColor(colorName, color)"
-      class="btn filled primary max-180 mt-4"
-    >Add Color</button>
-  </div>
-
-  <div class="col">
-    <div class="colors">
-      <div class="color" *ngFor="let color of colorsService.colors; index as i">
-        <div class="color-view" [style.background-color]="color.value">
-          <button class="color-delete" (click)="colorsService.removeColor(i)">X</button>
-        </div>
-        <p class="text-center">{{ color.value }}</p>
-      </div>
-    </div>
-  </div>
-  
-</div>
-
-<div class="cols-md-2 mt-5">
-  <div class="col">
-    <mat-checkbox [(ngModel)]="outlineChecked" (change)="onOutlineCheck($event)">Outline</mat-checkbox>
-    <div class="text-field with-label" data-unit="px">
-      <input
-        type="number"
-        placeholder="Border Radius"
-        (input)="onRadiusChange($event)"
-      >
-    </div>
-    <div class="text-field with-label" data-unit="px">
-      <input
-        type="number"
-        placeholder="Border Width"
-        [(ngModel)]="borderWidth"
-        (input)="setBorder()"
-        [disabled]="!outlineChecked"
-      >
-    </div>
-  </div>
-
-  <div class="col">
-    <button class="button-preview">Solid</button>
-    <button *ngIf="outlineChecked" class="button-preview outline ml-4">Outline</button>
-  </div>
-</div>
-
-<div class="flex justify-end">
-  <button
-    (click)="onCreateProject()"
-    [disabled]="createProjectForm.invalid || projectIsCreated"
-    [ngClass]="{'disabled': createProjectForm.invalid}"
-    class="btn filled primary max-180 mt-4"
-  >Create Project</button>
-  
-  <button
-    (click)="onDownload()"
-    [disabled]="!projectIsCreated"
-    [ngClass]="{'disabled': !projectIsCreated}"
-    class="btn filled primary max-180 mt-4 ml-2"
-  >Download</button>
-  
-</div> -->
-
 <mat-horizontal-stepper [linear]="false" #stepper>
 
-  <mat-step [stepControl]="createProjectForm">
+  <mat-step [stepControl]="createProjectForm" #step1>
     <ng-template matStepLabel>Project Name</ng-template>
     <form [formGroup]="createProjectForm" (submit)="onCreateProject()">
-      <div class="text-field" [ngClass]="{'invalid': createProjectForm.get('projectName').invalid && createProjectForm.get('projectName').touched}">
+      <div class="text-field" [ngClass]="{'invalid': createProjectForm.get('projectName').invalid && createProjectForm.get('projectName').touched || step1.isErrorState(createProjectForm)}">
         <input
           type="text"
           formControlName="projectName"
           placeholder="Project Name"
         >
-        <p *ngIf="createProjectForm.get('projectName').invalid && createProjectForm.get('projectName').touched" class="error-msg">Project name must be filled</p>
+        <p *ngIf="createProjectForm.get('projectName').invalid && createProjectForm.get('projectName').touched || step1.isErrorState(createProjectForm)" class="error-msg">Project name must be filled</p>
       </div>
     </form>
 
@@ -113,6 +19,7 @@
   </mat-step>
 
   <mat-step>
+    <ng-template matStepLabel>Add Colors</ng-template>
     <div class="cols-sm-4 align-center">
       <div class="col">
         <div class="text-field">
@@ -148,14 +55,48 @@
     </div>
 
     <button matStepperPrevious>Back</button>
-    <button matStepperNext>Next</button>  
+    <button matStepperNext>Next</button>
   </mat-step>
 
   <mat-step>
+
+    <mat-checkbox [(ngModel)]="outlineChecked" (change)="onOutlineCheck($event)">Outline</mat-checkbox>
+    <div class="text-field with-label" data-unit="px">
+      <input
+        type="number"
+        placeholder="Border Radius"
+        (input)="onRadiusChange($event)"
+      >
+    </div>
+    <div class="text-field with-label" data-unit="px">
+      <input
+        type="number"
+        placeholder="Border Width"
+        [(ngModel)]="borderWidth"
+        (input)="setBorder()"
+        [disabled]="!outlineChecked"
+      >
+    </div>
+
+    <div class="col">
+      <button class="button-preview">Solid</button>
+      <button *ngIf="outlineChecked" class="button-preview outline ml-4">Outline</button>
+    </div>
     
     <div>
       <button matStepperPrevious>Back</button>
-      <button (click)="stepper.reset()">Reset</button>
+      <button
+        (click)="onCreateProject()"
+        [disabled]="createProjectForm.invalid || projectIsCreated"
+        [ngClass]="{'disabled': createProjectForm.invalid}"
+        class="btn filled primary max-180"
+      >Create Project</button>
+      <button
+        (click)="onDownload()"
+        [disabled]="!projectIsCreated"
+        [ngClass]="{'disabled': !projectIsCreated}"
+        class="btn filled primary max-180 mt-4 ml-2"
+      >Download</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

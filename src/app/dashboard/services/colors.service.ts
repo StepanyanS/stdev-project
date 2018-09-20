@@ -12,20 +12,20 @@ export class ColorsService {
   colors: Color[] = [];
 
   constructor() {
-    this.colors = [
-      {
-        name: 'red',
-        value: '#ff0000'
-      },
-      {
-        name: 'green',
-        value: '#00ff00'
-      },
-      {
-        name: 'black',
-        value: '#000000'
-      }
-    ];
+    // this.colors = [
+    //   {
+    //     name: 'red',
+    //     value: '#ff0000'
+    //   },
+    //   {
+    //     name: 'green',
+    //     value: '#00ff00'
+    //   },
+    //   {
+    //     name: 'black',
+    //     value: '#000000'
+    //   }
+    // ];
    }
 
   private appllyColor(hex: string): void {
