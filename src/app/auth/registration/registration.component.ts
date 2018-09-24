@@ -5,14 +5,14 @@ import { Router } from '@angular/router';
 import { UsersService } from '../../shared/services/users.service';
 import { User } from '../../shared/models/user.model';
 import { Message } from '../../shared/models/message.model';
-import { AuthBase } from '../auth.base';
+import { MessageBase } from '../../shared/message.base';
 import { IResult } from './../../shared/models/result';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html'
 })
-export class RegistrationComponent extends AuthBase implements OnInit {
+export class RegistrationComponent extends MessageBase implements OnInit {
 
   regForm: FormGroup;
   message: Message;
@@ -30,7 +30,7 @@ export class RegistrationComponent extends AuthBase implements OnInit {
       'userName': new FormControl(null, [ Validators.required ]),
       'email': new FormControl(null, [ Validators.required, Validators.email ], this.forbiddenEmails.bind(this)),
       'password': new FormControl(null, [ Validators.required, Validators.minLength(6) ]),
-      'confirmPassword': new FormControl(null, [ Validators.required ])
+      'confirmPassword': new FormControl(null, [ Validators.required, Validators.minLength(6) ], this.checkPasswordConfirm.bind(this))
     });
   }
 
@@ -71,6 +71,18 @@ export class RegistrationComponent extends AuthBase implements OnInit {
             res(null);
           }
       });
+    });
+  }
+
+  checkPasswordConfirm(control: FormControl): Promise<any> {
+    return new Promise((res, rej) => {
+      if (this.regForm.value.password !== control.value) {
+        res({
+          confirmPassword: true
+        });
+      } else {
+        res(null);
+      }
     });
   }
 

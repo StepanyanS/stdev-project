@@ -5,6 +5,7 @@
   --btn-background-color: black;
   --btn-border-width: 0;
   --btn-border-style: solid;
+  --btn-border-color: #000;
 }
 
 .color-preview {
@@ -73,8 +74,8 @@
   cursor: pointer;
 
   &.outline {
-    border-color: #000;
-    border-width: var(--btn-border-width);
-    border-style: var(--btn-border-style);
+    color: #000;
+    background-color: transparent;
+    border: var(--btn-border-width) var(--btn-border-style) var(--btn-border-color);
   }
 }

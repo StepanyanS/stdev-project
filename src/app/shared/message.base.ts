@@ -1,6 +1,6 @@
-import { Message } from '../shared/models/message.model';
+import { Message } from './models/message.model';
 
-export abstract class AuthBase {
+export abstract class MessageBase {
   message: Message;
 
   protected newMessage(message: string, type: string) {

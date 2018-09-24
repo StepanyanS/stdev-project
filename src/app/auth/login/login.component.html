@@ -29,7 +29,7 @@
         </span>
       </p>
     </div>
-    <div *ngIf="message.text" class="text-field" [ngClass]="{'invalid': message.type === 'danger'}">
+    <div *ngIf="message.text" [ngClass]="{'invalid': message.type === 'danger'}">
       <p [ngClass]="{'error-msg': message.type === 'danger', 'success-msg': message.type === 'success'}">{{ message.text }}</p>
     </div>
   </div>

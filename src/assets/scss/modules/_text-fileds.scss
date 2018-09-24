@@ -13,26 +13,6 @@
     font-family: $font-primary;
   }
 
-  &.invalid {
-
-    input {
-      border-color: $color-warning;
-    }
-
-    .error-msg {
-      color: $color-warning;
-      font-size: $sm;
-      font-style: italic;
-      margin-top: 2px;
-      position: absolute;
-    }
-  }
-
-  .success-msg {
-    @extend .error-msg;
-    color: $color-success;
-  }
-
   &.with-label {
     input {
       padding-left: 30px;
@@ -56,4 +36,24 @@
     padding-top: 15px;
     padding-bottom: 15px;
   }
+}
+
+.invalid {
+
+  input {
+    border-color: $color-warning;
+  }
+
+  .error-msg {
+    color: $color-warning;
+    font-size: $sm;
+    font-style: italic;
+    margin-top: 2px;
+    position: absolute;
+  }
+}
+
+.success-msg {
+  @extend .error-msg;
+  color: $color-success;
 }

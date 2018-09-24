@@ -83,20 +83,28 @@
       <button *ngIf="outlineChecked" class="button-preview outline ml-4">Outline</button>
     </div>
     
-    <div>
+    <div class="flex align-center">
       <button matStepperPrevious>Back</button>
       <button
         (click)="onCreateProject()"
         [disabled]="createProjectForm.invalid || projectIsCreated"
         [ngClass]="{'disabled': createProjectForm.invalid}"
-        class="btn filled primary max-180"
+        class="btn filled primary max-180 mr-2"
       >Create Project</button>
+      <mat-spinner
+        *ngIf="projectIsCreating"
+        [diameter]="20"
+        mode="indeterminate"
+      ></mat-spinner>
       <button
         (click)="onDownload()"
         [disabled]="!projectIsCreated"
         [ngClass]="{'disabled': !projectIsCreated}"
-        class="btn filled primary max-180 mt-4 ml-2"
+        class="btn filled primary max-180 ml-2"
       >Download</button>
+    </div>
+    <div *ngIf="message.text" [ngClass]="{'invalid': message.type === 'danger'}">
+      <p [ngClass]="{'error-msg': message.type === 'danger', 'success-msg': message.type === 'success'}">{{ message.text }}</p>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

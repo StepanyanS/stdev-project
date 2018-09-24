@@ -1,4 +1,4 @@
-<table style="width: 100%; text-align: center">
+<table *ngIf="(projectsState$ | async).projects.length !== 0" style="width: 100%; text-align: center">
   <thead>
     <tr>
       <th>Project Name</th>
@@ -17,3 +17,8 @@
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="(projectsState$ | async).projects.length === 0" class="placeholder">
+  <p class="title"></p>
+  <p class="text">There is no projects</p>
+</div>
