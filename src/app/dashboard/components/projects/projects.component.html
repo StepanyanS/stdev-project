@@ -19,6 +19,10 @@
 </table>
 
 <div *ngIf="(projectsState$ | async).projects.length === 0" class="placeholder">
-  <p class="title"></p>
-  <p class="text">There is no projects</p>
+  <h1 class="page-title">Projects</h1>
+  <div class="box">
+    <div class="container">
+      <p class="text">There are no projects to show.</p>
+    </div>
+  </div>
 </div>

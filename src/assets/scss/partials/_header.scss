@@ -4,7 +4,7 @@ header {
   background-color: #ffffff;
   padding: 10px 0 10px 260px;
   height: 81px;
-  box-shadow: 0 10px 30px -5px rgba(0,0,0,0.41);
+  box-shadow: $header-shadow;
 
   nav {
     margin-left: auto;

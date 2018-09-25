@@ -1,6 +1,10 @@
-<h1>Create Project</h1>
+<!-- Create project page -->
 
-<mat-horizontal-stepper [linear]="false" #stepper>
+<div class="create-project">
+
+<h1 class="page-title">Create Project</h1>
+
+<mat-horizontal-stepper [linear]="false" #stepper class="box">
 
   <mat-step [stepControl]="createProjectForm" #step1>
     <ng-template matStepLabel>Project Name</ng-template>
@@ -108,3 +112,4 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+</div>

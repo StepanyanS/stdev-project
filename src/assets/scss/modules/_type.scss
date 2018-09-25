@@ -1,0 +1,9 @@
+// Typography styles
+
+/* Heading sizes */
+
+@each $key,$val in $heading-font-sizes {
+	#{$key}, .#{$key} {
+		font-size: #{$val};
+	}
+}
