@@ -19,7 +19,7 @@
       </div>
     </form>
 
-    <button matStepperNext>Next</button>
+    <button matStepperNext class="btn filled primary max-180 mt-8">Next</button>
   </mat-step>
 
   <mat-step>
@@ -57,12 +57,14 @@
         <p class="text-center">{{ color.value }}</p>
       </div>
     </div>
-
-    <button matStepperPrevious>Back</button>
-    <button matStepperNext>Next</button>
+    <div class="mt-8">
+      <button matStepperPrevious class="btn filled secondary max-180 mr-5">Back</button>
+      <button matStepperNext class="btn filled primary max-180">Next</button>
+    </div>
   </mat-step>
 
   <mat-step>
+    <ng-template matStepLabel>Generate project</ng-template>
 
     <mat-checkbox [(ngModel)]="outlineChecked" (change)="onOutlineCheck($event)">Outline</mat-checkbox>
     <div class="text-field with-label" data-unit="px">
@@ -87,8 +89,8 @@
       <button *ngIf="outlineChecked" class="button-preview outline ml-4">Outline</button>
     </div>
     
-    <div class="flex align-center">
-      <button matStepperPrevious>Back</button>
+    <div class="flex align-center mt-8">
+      <button matStepperPrevious class="btn filled secondary max-180 mr-5">Back</button>
       <button
         (click)="onCreateProject()"
         [disabled]="createProjectForm.invalid || projectIsCreated"

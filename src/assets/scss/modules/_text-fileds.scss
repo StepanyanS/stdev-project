@@ -16,9 +16,15 @@
     &:focus {
       border-color: $color-primary;
     }
+
+    &:disabled {
+      border-color: $color-black-50;
+      background-color: rgba(#ffffff, 0.7);
+    }
   }
 
   &.with-label {
+
     input {
       padding-left: 30px;
     }
@@ -53,7 +59,7 @@
     color: $color-warning;
     font-size: $sm;
     font-style: italic;
-    margin-top: 2px;
+    margin-top: 5px;
     position: absolute;
   }
 }

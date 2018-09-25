@@ -10,6 +10,7 @@
   font-family: $font-primary;
 
   &.filled {
+
     &.primary {
       background-color: $color-primary;
       border-color: darken($color-primary, 8%);
@@ -19,12 +20,26 @@
       }
     }
 
-    &[disabled], &.disabled {
-      opacity: .7;
+    &.secondary {
+      background-color: $color-secondary;
+      border-color: darken($color-secondary, 8%);
 
       &:hover {
-        background-color: $color-primary;
+        background-color: darken($color-secondary, 8%);
       }
+    }
+
+    &.black {
+      background-color: $color-black;
+      border-color: darken($color-black, 8%);
+
+      &:hover {
+        background-color: darken($color-black, 8%);
+      }
+    }
+
+    &[disabled], &.disabled {
+      opacity: .7;
     }
   }
 

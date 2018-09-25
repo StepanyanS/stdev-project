@@ -15,6 +15,7 @@ $color-blue: #0498d1 !default;
 $color-light-blue: #8fd8f8 !default;
 $color-black: #262626 !default;
 $color-black-80: rgba($color-black, 0.8);
+$color-black-50: rgba($color-black, 0.5);
 $color-red: #EF5350 !default;
 $color-white: #F3F3F3 !default;
 $color-green: #99c76a !default;
@@ -44,10 +45,10 @@ $base-font-size: $md;
 
 $h-xs: 14px;
 $h-sm: 20px;
-$h-md: 30px;
-$h-lg: 36px;
-$h-xl: 40px;
-$h-xxl: 44px;
+$h-md: 26px;
+$h-lg: 32px;
+$h-xl: 36px;
+$h-xxl: 40px;
 
 $heading-font-sizes: (
 		h6: $h-xs, h5: $h-sm, h4: $h-md, h3: $h-lg, h2: $h-xl, h1: $h-xxl

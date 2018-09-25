@@ -1,12 +1,14 @@
-<table *ngIf="(projectsState$ | async).projects.length !== 0" style="width: 100%; text-align: center">
-  <thead>
+<div class="projects">
+
+  <table *ngIf="(projectsState$ | async).projects.length !== 0" style="width: 100%; text-align: center">
+    <thead>
     <tr>
       <th>Project Name</th>
       <th>Date</th>
       <th>Actions</th>
     </tr>
-  </thead>
-  <tbody [@listStagger]="projects">
+    </thead>
+    <tbody [@listStagger]="projects">
     <tr [id]="project.id" *ngFor="let project of (projectsState$ | async).projects">
       <td>{{ project.projectName }}</td>
       <td>{{ project.date }}</td>
@@ -15,14 +17,15 @@
         <button (click)="onRemoveProject(project.id)" style="color: red">X</button>
       </td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<div *ngIf="(projectsState$ | async).projects.length === 0" class="placeholder">
-  <h1 class="page-title">Projects</h1>
-  <div class="box">
-    <div class="container">
-      <p class="text">There are no projects to show.</p>
+  <div *ngIf="(projectsState$ | async).projects.length === 0" class="placeholder">
+    <h1 class="page-title">Projects</h1>
+    <div class="box">
+      <div class="container">
+        <p class="text">There are no projects to show. :( </p>
+      </div>
     </div>
   </div>
 </div>
