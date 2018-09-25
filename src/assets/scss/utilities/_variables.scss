@@ -11,16 +11,16 @@ $font-icons: "Icomoon Project Name";
 $color-blue: #0498d1 !default;
 $color-light-blue: #8fd8f8 !default;
 $color-black: #262626 !default;
-$color-red: #e44c23 !default;
+$color-red: #EF5350 !default;
 $color-green: #99c76a !default;
-
-$color-primary: $color-blue !default;
-$color-secondary: $color-black !default;
-$color-warning: $color-red !default;
+$color-primary: #3B86FF !default;
+$color-secondary: #43425D !default;
 $color-success: $color-green !default;
+$color-body: #F3F3F3 !default;
 
 //Descriptive Base Colors
 $color-text: $color-black;
+$color-warning: $color-red;
 
 //Text
 $xs: 12px;

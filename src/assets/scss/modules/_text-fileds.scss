@@ -4,13 +4,18 @@
 
   input {
     width: 100%;
-    height: 45px;
+    height: 55px;
     padding-left: 15px;
     padding-right: 15px;
     font-size: $md;
     border: 1px solid #000;
     font-size: $md;
     font-family: $font-primary;
+    transition: $trns-duration;
+
+    &:focus, &:valid {
+      border-color: $color-primary;
+    }
   }
 
   &.with-label {
