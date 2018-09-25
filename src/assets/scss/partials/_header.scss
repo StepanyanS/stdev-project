@@ -39,9 +39,14 @@ header {
 
   a {
     display: block;
+    transition: $trns-duration;
 
     img {
       width: 100%;
+    }
+
+    &:hover {
+      opacity: 0.7;
     }
   }
 }

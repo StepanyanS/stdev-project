@@ -30,6 +30,7 @@ export class CreateProjectComponent extends MessageBase implements OnInit {
 
   outlineChecked = false;
 
+  canAddColor = false;
   projectIsCreated = false;
   projectIsCreating = false;
 
@@ -54,6 +55,7 @@ export class CreateProjectComponent extends MessageBase implements OnInit {
   }
 
   onAddColor(colorName: HTMLInputElement, color: HTMLInputElement): void {
+    this.canAddColor = false;
     this.colorsService.addColor(colorName, color);
   }
 
@@ -91,8 +93,16 @@ export class CreateProjectComponent extends MessageBase implements OnInit {
       });
   }
 
+  public colorChange($event): void {
+    if ($event.target.value.length === 6) {
+      this.canAddColor = true;
+      console.log(this.canAddColor);
+      this.colorsService.appllyColor($event.target.value);
+    }
+  }
+
   onColorChange($event): void {
-    this.colorsService.colorChange($event);
+    this.colorChange($event);
   }
 
   onRadiusChange($event) {

@@ -36,15 +36,17 @@
           <input #color type="text" (input)="onColorChange($event)">
         </div>
       </div>
-  
+
       <div class="col">
         <div class="color-preview">&nbsp;</div>
       </div>
 
       <div class="col">
         <button
-        (click)="onAddColor(colorName, color)"
-        class="btn filled primary max-180"
+          [disabled]="!canAddColor"
+          [ngClass]="{'disabled': !canAddColor}"
+          (click)="onAddColor(colorName, color)"
+          class="btn filled primary max-180"
       >Add Color</button>
       </div>
     </div>
@@ -84,7 +86,7 @@
       >
     </div>
 
-    <div class="col">
+    <div class="col mt-4">
       <button class="button-preview">Solid</button>
       <button *ngIf="outlineChecked" class="button-preview outline ml-4">Outline</button>
     </div>
@@ -95,7 +97,7 @@
         (click)="onCreateProject()"
         [disabled]="createProjectForm.invalid || projectIsCreated"
         [ngClass]="{'disabled': createProjectForm.invalid}"
-        class="btn filled primary max-180 mr-2"
+        class="btn filled primary max-180 mr-5"
       >Create Project</button>
       <mat-spinner
         *ngIf="projectIsCreating"
@@ -106,7 +108,7 @@
         (click)="onDownload()"
         [disabled]="!projectIsCreated"
         [ngClass]="{'disabled': !projectIsCreated}"
-        class="btn filled primary max-180 ml-2"
+        class="btn filled primary max-180"
       >Download</button>
     </div>
     <div *ngIf="message.text" [ngClass]="{'invalid': message.type === 'danger'}">

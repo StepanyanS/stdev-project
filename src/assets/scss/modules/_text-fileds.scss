@@ -8,7 +8,7 @@
     padding-left: 15px;
     padding-right: 15px;
     font-size: $md;
-    border: 1px solid #000;
+    border: 1px solid $color-border;
     font-size: $md;
     font-family: $font-primary;
     transition: $trns-duration;
@@ -18,8 +18,8 @@
     }
 
     &:disabled {
-      border-color: $color-black-50;
-      background-color: rgba(#ffffff, 0.7);
+      border-color: $color-border-50;
+      background-color: rgba($color-white, 0.6);
     }
   }
 

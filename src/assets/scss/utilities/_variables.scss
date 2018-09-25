@@ -7,7 +7,7 @@ $images-folder: '../img/';
 
 $font-primary: "Open Sans", serif;
 $font-secondary: "Times New Roman", serif;
-$font-icons: "Icomoon Project Name";
+$font-icons: "Icomoon STDev-front";
 
 // color usage
 
@@ -28,6 +28,9 @@ $color-text: $color-black;
 $color-warning: $color-red;
 $color-body: $color-white;
 $color-success: $color-green;
+$color-border: #E8E9EC;
+$color-border-50: rgba($color-border, 0.5);
+$color-disable: #cecece;
 
 // text
 
@@ -36,6 +39,7 @@ $sm: 14px;
 $md: 16px;
 $lg: 18px;
 $xl: 20px;
+$xxl: 28px;
 
 // base font size
 

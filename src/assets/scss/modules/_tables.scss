@@ -1,0 +1,14 @@
+/* Tables */
+
+.main-table {
+
+	table {
+		width: 100%;
+		text-align: center;
+
+		th, td {
+			padding: 23px 5px;
+			border-bottom: 1px solid $color-border;
+		}
+	}
+}
