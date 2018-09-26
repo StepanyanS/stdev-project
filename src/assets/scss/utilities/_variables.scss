@@ -32,6 +32,12 @@ $color-border: #E8E9EC;
 $color-border-50: rgba($color-border, 0.5);
 $color-disable: #cecece;
 
+
+$main-colors: (
+		primary: $color-primary, secondary: $color-secondary,  text: $color-text, warning: $color-warning,
+) !default;
+
+
 // text
 
 $xs: 12px;

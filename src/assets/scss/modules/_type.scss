@@ -7,3 +7,11 @@
 		font-size: #{$val};
 	}
 }
+
+/* Text colors */
+
+@each $key,$val in $main-colors {
+	.color-#{$key} {
+		color: #{$val};
+	}
+}

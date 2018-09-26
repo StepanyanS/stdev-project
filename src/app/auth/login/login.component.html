@@ -34,9 +34,11 @@
     </div>
   </div>
 
+  <a routerLink="/registration" class="auth-link">Don`t have an account? - Sign Up</a>
+
   <button
     type="submit"
-    class="mt-4 btn filled primary full-width"
+    class="mt-10 btn filled primary full-width"
     [disabled]="loginForm.invalid"
     [ngClass]="{'disabled': loginForm.invalid}"
   >
@@ -44,4 +46,3 @@
   </button>
 </form>
 
-<a routerLink="/registration">Register</a>
