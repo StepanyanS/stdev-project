@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 import { saveAs } from 'file-saver/FileSaver';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
@@ -27,10 +27,12 @@ import { AppState } from '../../redux/app.state';
     ])
   ]
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
 
-  projects: Project[];
-  public projectsState$: Observable<Projects>;
+  public projects: Project[];
+  private projectsState$: Observable<Projects>;
+  private projectsSubscriber: Subscription;
+  private reversed = false;
 
   constructor(
     private projectsService: ProjectsService,
@@ -39,9 +41,22 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.projectsState$ = this.store.select('projectsPage');
+    this.projectsSubscriber = this.projectsState$.subscribe(
+      data => {
+        this.projects = data.projects;
+      }
+    );
   }
 
-  onDownload(id: number, name: string) {
+  ngOnDestroy() {
+    this.projectsSubscriber.unsubscribe();
+    if (this.reversed) {
+      this.reversed = false;
+      this.projects.reverse();
+    }
+  }
+
+  onDownload(id: number, name: string): void {
     this.projectsService.downloadProject(id)
       .subscribe((blob) => {
         saveAs(blob, `${name}.zip`);
@@ -50,6 +65,11 @@ export class ProjectsComponent implements OnInit {
 
   onRemoveProject(id: number): void {
     this.projectsService.removeProject(id);
+  }
+
+  onSort(): void {
+    this.reversed = !this.reversed;
+    this.projects.reverse();
   }
 
 }

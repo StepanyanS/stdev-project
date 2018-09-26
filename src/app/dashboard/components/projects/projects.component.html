@@ -3,16 +3,16 @@
   <div class="box">
     <div class="container">
       <div class="main-table projects-table mb-5">
-        <table *ngIf="(projectsState$ | async).projects.length !== 0">
+        <table *ngIf="projects.length !== 0">
           <thead>
           <tr>
             <th>Project Name</th>
-            <th>Date <button class="btn-icon ml-1 font-md date-sort"><i class="icon-sort"></i></button></th>
+            <th>Date <button class="btn-icon ml-1 font-md date-sort" (click)="onSort()"><i class="icon-sort"></i></button></th>
             <th>Actions</th>
           </tr>
           </thead>
           <tbody [@listStagger]="projects">
-          <tr [id]="project.id" *ngFor="let project of (projectsState$ | async).projects">
+          <tr [id]="project.id" *ngFor="let project of projects">
             <td>{{ project.projectName }}</td>
             <td>{{ project.date }}</td>
             <td>

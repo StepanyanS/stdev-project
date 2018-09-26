@@ -93,16 +93,14 @@ export class CreateProjectComponent extends MessageBase implements OnInit {
       });
   }
 
-  public colorChange($event): void {
+  public onColorChange($event): void {
     if ($event.target.value.length === 6) {
       this.canAddColor = true;
-      console.log(this.canAddColor);
       this.colorsService.appllyColor($event.target.value);
+    } else {
+      this.canAddColor = false;
+      this.colorsService.appllyColor('000000');
     }
-  }
-
-  onColorChange($event): void {
-    this.colorChange($event);
   }
 
   onRadiusChange($event) {
