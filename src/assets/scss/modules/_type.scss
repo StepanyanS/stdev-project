@@ -1,5 +1,13 @@
 // Typography styles
 
+// Text sizes
+
+@each $key,$val in $text-font-sizes {
+	.font-#{$key} {
+		font-size: #{$val};
+	}
+}
+
 /* Heading sizes */
 
 @each $key,$val in $heading-font-sizes {

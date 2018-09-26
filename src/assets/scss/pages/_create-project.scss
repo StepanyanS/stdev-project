@@ -36,14 +36,13 @@
     .color-view {
       width: 80px;
       height: 80px;
-      border-radius: 5px;
       
       .color-delete {
         position: absolute;
         top: 5px;
         right: 5px;
         text-align: center;
-        padding: 2px 5px;
+        padding: 1px 2px;
         background-color: rgba(255, 255, 255, .6);
         visibility: hidden;
         opacity: 0;
@@ -51,9 +50,11 @@
         outline: 0;
         transition: .3s;
         cursor: pointer;
+        font-size: $md;
   
         &:hover {
           box-shadow: none;
+          color: $color-warning;
         }
       }
 

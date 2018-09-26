@@ -54,7 +54,7 @@
     <div class="colors mb-4">
       <div class="color" *ngFor="let color of colorsService.colors; index as i">
         <div class="color-view" [style.background-color]="color.value">
-          <button class="color-delete" (click)="colorsService.removeColor(i)">X</button>
+          <button class="color-delete" (click)="colorsService.removeColor(i)"><i class="icon-close"></i></button>
         </div>
         <p class="text-center">{{ color.value }}</p>
       </div>
@@ -90,6 +90,10 @@
       <button class="button-preview">Solid</button>
       <button *ngIf="outlineChecked" class="button-preview outline ml-4">Outline</button>
     </div>
+
+    <div class="mt-5" *ngIf="message.text" [ngClass]="{'invalid': message.type === 'danger'}">
+      <p [ngClass]="{'error-msg': message.type === 'danger', 'success-msg': message.type === 'success'}">{{ message.text }}</p>
+    </div>
     
     <div class="flex align-center mt-8">
       <button matStepperPrevious class="btn filled secondary max-180 mr-5">Back</button>
@@ -103,6 +107,7 @@
         *ngIf="projectIsCreating"
         [diameter]="20"
         mode="indeterminate"
+        class="mr-5"
       ></mat-spinner>
       <button
         (click)="onDownload()"
@@ -110,9 +115,6 @@
         [ngClass]="{'disabled': !projectIsCreated}"
         class="btn filled primary max-180"
       >Download</button>
-    </div>
-    <div *ngIf="message.text" [ngClass]="{'invalid': message.type === 'danger'}">
-      <p [ngClass]="{'error-msg': message.type === 'danger', 'success-msg': message.type === 'success'}">{{ message.text }}</p>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

@@ -10,38 +10,25 @@
   font-family: $font-primary;
 
   &.filled {
+    border: 0;
+    color: #ffffff;
 
-    &.primary {
-      background-color: $color-primary;
-      border-color: darken($color-primary, 8%);
-
-      &:hover {
-        background-color: darken($color-primary, 8%);
+    @each $key,$val in $main-colors {
+      &.#{$key} {
+        background-color: #{$val};
       }
     }
 
-    &.secondary {
-      background-color: $color-secondary;
-      border-color: darken($color-secondary, 8%);
-
-      &:hover {
-        background-color: darken($color-secondary, 8%);
-      }
-    }
-
-    &.black {
-      background-color: $color-black;
-      border-color: darken($color-black, 8%);
-
-      &:hover {
-        background-color: darken($color-black, 8%);
-      }
+    &:hover {
+      opacity: 0.7;
     }
 
     &[disabled], &.disabled {
       color: rgba(#fff, 0.9);
       background-color: $color-disable!important;
       border-color: transparent;
+      pointer-events: none;
+
     }
   }
 

@@ -1,0 +1,19 @@
+/* Project page styles */
+
+.projects {
+
+	.desc-test {
+		margin-top: 25px;
+
+		a {
+			color: $color-primary;
+			transition: $trns-duration;
+			font-size: $md;
+			text-decoration: underline;
+
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+	}
+}

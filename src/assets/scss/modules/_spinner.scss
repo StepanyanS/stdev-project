@@ -1,0 +1,7 @@
+/* Spinner styles */
+
+// Spinner color change
+
+.mat-progress-spinner circle, .mat-spinner circle {
+	stroke: $color-primary;
+}

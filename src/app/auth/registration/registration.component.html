@@ -1,24 +1,24 @@
-<h3 class="text-center">Register</h3>
+<h3 class="text-center">Sign Up</h3>
 
 <form [formGroup]="regForm" (submit)="onSubmit()">
   <div class="field-group">
 
     <div class="text-field" [ngClass]="{'invalid': regForm.get('userName').invalid && regForm.get('userName').touched}">
       <input
-        id="userName"
-        type="text"
-        placeholder="Developer Name"
-        formControlName="userName"
+              id="userName"
+              type="text"
+              placeholder="Developer Name"
+              formControlName="userName"
       >
       <p *ngIf="regForm.get('userName').invalid && regForm.get('userName').touched" class="error-msg">Name can not be empty</p>
     </div>
 
     <div class="text-field" [ngClass]="{'invalid': regForm.get('email').invalid && regForm.get('email').touched}">
       <input
-        id="email"
-        type="email"
-        placeholder="Email"
-        formControlName="email"
+              id="email"
+              type="email"
+              placeholder="Email"
+              formControlName="email"
       >
       <p *ngIf="regForm.get('email').invalid && regForm.get('email').touched" class="error-msg">
         <span *ngIf="regForm.get('email')['errors']['required']">Email can not be empty</span>
@@ -29,10 +29,10 @@
 
     <div class="text-field" [ngClass]="{'invalid': regForm.get('password').invalid && regForm.get('password').touched}">
       <input
-        id="password"
-        type="password"
-        placeholder="Password"
-        formControlName="password"
+              id="password"
+              type="password"
+              placeholder="Password"
+              formControlName="password"
       >
       <p *ngIf="regForm.get('password').invalid && regForm.get('password').touched" class="error-msg">
         <span *ngIf="regForm.get('password')['errors']['required']">Password can not be empty</span>
@@ -45,10 +45,10 @@
 
     <div class="text-field" [ngClass]="{'invalid': regForm.get('confirmPassword').invalid && regForm.get('confirmPassword').touched}">
       <input
-        id="confirmPassword"
-        type="password"
-        placeholder="Confirm Password"
-        formControlName="confirmPassword"
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              formControlName="confirmPassword"
       >
       <p *ngIf="regForm.get('confirmPassword').invalid && regForm.get('confirmPassword').touched" class="error-msg">
         <span *ngIf="regForm.get('confirmPassword')['errors']['required']">Confirm Password can not be empty</span>
@@ -63,10 +63,8 @@
     <div *ngIf="message.text" class="text-field" [ngClass]="{'invalid': message.type === 'danger'}">
       <p [ngClass]="{'error-msg': message.type === 'danger', 'success-msg': message.type === 'success'}">{{ message.text }}</p>
     </div>
-
+    <a routerLink="/login" class="auth-link">Already have an account? Sign In</a>
   </div>
 
   <button [disabled]="regForm.invalid" [ngClass]="{'disabled': regForm.invalid}" type="submit" class="mt-4 btn filled primary full-width">Registration</button>
 </form>
-
-<a routerLink="/login">Login</a>

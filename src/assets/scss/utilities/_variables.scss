@@ -47,6 +47,10 @@ $lg: 18px;
 $xl: 20px;
 $xxl: 28px;
 
+$text-font-sizes: (
+		xs: $xs, sm: $sm, md: $md, lg: $lg, xl: $xl, xxl: $xxl
+) !default;
+
 // base font size
 
 $base-font-size: $md;

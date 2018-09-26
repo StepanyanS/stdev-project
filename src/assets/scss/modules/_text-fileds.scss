@@ -67,4 +67,5 @@
 .success-msg {
   @extend .error-msg;
   color: $color-success;
+  text-decoration: underline;
 }
