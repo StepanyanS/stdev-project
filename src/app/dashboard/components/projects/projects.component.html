@@ -1,9 +1,10 @@
 <div class="projects">
   <h1 class="page-title">Projects</h1>
   <div class="box">
+
     <div class="container">
-      <div class="main-table projects-table mb-5">
-        <table *ngIf="projects.length !== 0">
+      <div *ngIf="projects.length !== 0" class="main-table projects-table mb-5">
+        <table>
           <thead>
           <tr>
             <th>Project Name</th>
@@ -17,18 +18,18 @@
             <td>{{ project.date }}</td>
             <td>
               <button class="btn-icon mr-3" (click)="onDownload(project.id, project.projectName)"><i class="icon-download"></i></button>
-              <button class="btn-icon color-warning" (click)="onRemoveProject(project.id)"><i class="icon-close"></i></button>
+              <button class="btn-icon color-warning" (click)="openDialog(project.id)"><i class="icon-close"></i></button>
             </td>
           </tr>
           </tbody>
         </table>
       </div>
+
+      <div *ngIf="(projectsState$ | async).projects.length === 0" class="placeholder">
+        <p class="text">There are no projects to show. :( </p>
+        <p class="desc-test">For creating a new project follow the <a routerLink="../create-project">link</a> ;)</p>
+      </div>
+
     </div>
-
-
-  <div *ngIf="(projectsState$ | async).projects.length === 0" class="placeholder">
-    <p class="text">There are no projects to show. :( </p>
-    <p class="desc-test">For creating a new project follow the <a routerLink="../create-project">link</a> ;)</p>
   </div>
-</div>
 </div>
