@@ -8,7 +8,7 @@
           <thead>
           <tr>
             <th>Project Name</th>
-            <th>Date <button class="btn-icon ml-1 font-md date-sort" (click)="onSort()"><i class="icon-sort"></i></button></th>
+            <th>Date <button class="btn-icon ml-1 font-md date-sort" (click)="onSort()"><i class="icon-sort" [ngClass]="{'icon-sort-ascending': reversed, 'icon-sort': !reversed}"></i></button></th>
             <th>Actions</th>
           </tr>
           </thead>
@@ -25,7 +25,7 @@
         </table>
       </div>
 
-      <div *ngIf="(projectsState$ | async).projects.length === 0" class="placeholder">
+      <div *ngIf="projects.length === 0" class="placeholder">
         <p class="text">There are no projects to show. :( </p>
         <p class="desc-test">For creating a new project follow the <a routerLink="../create-project">link</a> ;)</p>
       </div>

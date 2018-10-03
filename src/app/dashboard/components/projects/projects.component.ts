@@ -37,7 +37,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   public projects: Project[];
   private projectsState$: Observable<Projects>;
   private projectsSubscriber: Subscription;
-  private reversed = false;
+  public reversed = false;
 
   constructor(
     private projectsService: ProjectsService,
@@ -68,7 +68,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       data: {id: id}
     });
 
-    dialogRef.afterClosed().subscribe((result: number) => {
+    dialogRef.afterClosed().subscribe((result: number): void => {
       if (result) {
         this.removeProject(result);
       }
@@ -87,8 +87,10 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   }
 
   onSort(): void {
-    this.reversed = !this.reversed;
-    this.projects.reverse();
+    if (this.projects.length !== 1) {
+      this.reversed = !this.reversed;
+      this.projects.reverse();
+    }
   }
 
 }

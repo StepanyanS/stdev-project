@@ -15,29 +15,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-trash {
+.icon-trash-can {
   &:before {
-    content: $icon-trash;
+    content: $icon-trash-can; 
   }
 }
-
 .icon-filter {
   &:before {
-    content: $icon-filter;
+    content: $icon-filter; 
   }
 }
 .icon-sort {
   &:before {
-    content: $icon-sort;
+    content: $icon-sort; 
+  }
+}
+.icon-sort-ascending {
+  &:before {
+    content: $icon-sort-ascending; 
   }
 }
 .icon-download {
   &:before {
-    content: $icon-download;
+    content: $icon-download; 
   }
 }
 .icon-close {
   &:before {
-    content: $icon-close;
+    content: $icon-close; 
   }
 }
