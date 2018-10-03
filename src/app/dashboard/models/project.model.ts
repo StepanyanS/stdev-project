@@ -8,9 +8,15 @@ export class Color {
   }
 }
 
+type Buttons = {
+  borderRadius: null | string;
+  outline: null | string;
+}
+
 export interface IProjectData {
-  colors: Color[];
-  colorsSources: Object;
+  colors?: Color[];
+  colorsSources?: Object;
+  buttons?: Buttons;
 }
 
 export class Project {
@@ -21,12 +27,15 @@ export class Project {
 
   constructor(
     name: string,
-    colors: Color[]
+    colors: Color[],
+    buttons: Buttons
   ) {
     this.projectName = name;
     this.data = {
       colors: colors,
-      colorsSources: {}
+      colorsSources: {},
+      buttons: buttons
+    
     };
   }
 }

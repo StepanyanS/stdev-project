@@ -40,7 +40,7 @@ export class CreateProjectComponent extends MessageBase implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private projectsService: ProjectsService,
-    public colorsService: ColorsService,
+    private colorsService: ColorsService,
     private store: Store<AppState>
   ) {
     super();
