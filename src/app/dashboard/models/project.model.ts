@@ -27,15 +27,12 @@ export class Project {
 
   constructor(
     name: string,
-    colors: Color[],
-    buttons: Buttons
+    colors: Color[]
   ) {
     this.projectName = name;
     this.data = {
       colors: colors,
-      colorsSources: {},
-      buttons: buttons
-    
+      colorsSources: {}
     };
   }
 }
