@@ -9,11 +9,12 @@
   <div class="box">
     <div class="container">
       <form [formGroup]="profileForm" (submit)="onSubmit()" class="field-group">
-        <div class="text-field">
+        <div class="text-field" [ngClass]="{'invalid': profileForm.get('userName').invalid && profileForm.get('userName').touched}">
           <input
-                  type="text"
-                  formControlName="userName"
+            type="text"
+            formControlName="userName"
           >
+          <p *ngIf="profileForm.get('userName').invalid && profileForm.get('userName').touched" class="error-msg">Name can not be empty</p>
         </div>
         <div class="text-field">
           <input
@@ -22,21 +23,35 @@
                   formControlName="email"
           >
         </div>
-        <div class="text-field">
+        <div class="text-field" [ngClass]="{'invalid': profileForm.get('password').invalid && profileForm.get('password').touched}">
           <input
                   type="password"
                   formControlName="password"
                   placeholder="Current Password"
           >
+          <p *ngIf="profileForm.get('password').invalid && profileForm.get('password').touched" class="error-msg">
+            <span *ngIf="profileForm.get('password')['errors']['required']">Password can not be empty</span>
+            <span *ngIf="profileForm.get('password')['errors']['minlength']">
+              Password must be at least {{profileForm.get('password')['errors']['minlength']['requiredLength']}} characters.
+              You have entered {{profileForm.get('password')['errors']['minlength']['actualLength']}}
+            </span>
+          </p>
         </div>
-        <div class="text-field">
+        <div class="text-field" [ngClass]="{'invalid': profileForm.get('newPassword').invalid && profileForm.get('newPassword').touched}">
           <input
-                  type="password"
-                  formControlName="newPassword"
-                  placeholder="New Password"
+            type="password"
+            formControlName="newPassword"
+            placeholder="New Password"
           >
+          <p *ngIf="profileForm.get('newPassword').invalid && profileForm.get('newPassword').touched" class="error-msg">
+            <span *ngIf="profileForm.get('newPassword')['errors']['required']">New password can not be empty</span>
+            <span *ngIf="profileForm.get('newPassword')['errors']['minlength']">
+              New password must be at least {{profileForm.get('newPassword')['errors']['minlength']['requiredLength']}} characters.
+              You have entered {{profileForm.get('newPassword')['errors']['minlength']['actualLength']}}
+            </span>
+          </p>
         </div>
-        <button type="submit" class="mt-4 btn filled primary max-180">Edit</button>
+        <button [disabled]="profileForm.invalid" type="submit" class="mt-4 btn filled primary max-180">Edit</button>
       </form>
     </div>
   </div>

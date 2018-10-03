@@ -21,10 +21,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profileForm = new FormGroup({
-      'userName': new FormControl(null),
+      'userName': new FormControl(null, [ Validators.required ]),
       'email': new FormControl(null),
-      'password': new FormControl(null),
-      'newPassword': new FormControl(null)
+      'password': new FormControl(null, [ Validators.required, Validators.minLength(6) ]),
+      'newPassword': new FormControl(null, [ Validators.required, Validators.minLength(6) ])
     });
 
     this.usersService.getUser().subscribe(
@@ -53,6 +53,8 @@ export class ProfileComponent implements OnInit {
           'password': null,
           'newPassword': null
         });
+        this.profileForm.controls.password.markAsUntouched();
+        this.profileForm.controls.newPassword.markAsUntouched();
       });
   }
 
