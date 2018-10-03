@@ -62,17 +62,21 @@ export class ProfileComponent implements OnInit {
   }
 
   private markAsValid () {
+    this.profileForm.controls.userName.markAsUntouched();
     this.profileForm.controls.password.markAsUntouched();
     this.profileForm.controls.newPassword.markAsUntouched();
     this.profileForm.controls.password.markAsPristine();
     this.profileForm.controls.newPassword.markAsPristine();
+    this.profileForm.controls.userName.markAsPristine();
   }
 
   private markAsInvalid () {
+    this.profileForm.controls.userName.markAsTouched();
     this.profileForm.controls.password.markAsTouched();
     this.profileForm.controls.newPassword.markAsTouched();
     this.profileForm.controls.password.markAsDirty();
     this.profileForm.controls.newPassword.markAsDirty();
+    this.profileForm.controls.userName.markAsDirty();
   }
 
 }
