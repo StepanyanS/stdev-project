@@ -1,16 +1,16 @@
 // start block sidebar
 .sidebar {
-  width: 200px;
-  background-color: $color-light-blue;
-  position: absolute;
+  width: 260px;
+  background-color: $color-black;
+  position: fixed;
+  top: 0;
   left: 0;
-  top: 81px;
   bottom: 0;
 
   nav {
 
     .nav-list {
-      padding-top: 20px;
+      padding-top: 100px;
 
       li {
 
@@ -27,7 +27,7 @@
           transition: .3s;
           font-weight: 600;
           border-left: 3px solid transparent;
-          padding: 8px 10px 8px 25px;
+          padding: 23px 10px 23px 25px;
 
           &:hover {
             background-color: $color-primary;

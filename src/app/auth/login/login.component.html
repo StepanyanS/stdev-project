@@ -1,4 +1,4 @@
-<h3 class="text-center">Login</h3>
+<h3 class="text-center">Sign In</h3>
 
 <form [formGroup]="loginForm" (submit)="onSubmit()">
   <div class="field-group">
@@ -34,9 +34,11 @@
     </div>
   </div>
 
+  <a routerLink="/registration" class="auth-link">Don`t have an account? - Sign Up</a>
+
   <button
     type="submit"
-    class="mt-4 btn filled primary full-width"
+    class="mt-5 btn filled primary full-width"
     [disabled]="loginForm.invalid"
     [ngClass]="{'disabled': loginForm.invalid}"
   >
@@ -44,4 +46,3 @@
   </button>
 </form>
 
-<a routerLink="/registration">Register</a>

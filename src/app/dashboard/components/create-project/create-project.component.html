@@ -1,6 +1,10 @@
-<h1>Create Project</h1>
+<!-- Create project page -->
 
-<mat-horizontal-stepper [linear]="false" #stepper>
+<div class="create-project">
+
+<h1 class="page-title">Create Project</h1>
+
+<mat-horizontal-stepper [linear]="false" #stepper class="box">
 
   <mat-step [stepControl]="createProjectForm" #step1>
     <ng-template matStepLabel>Project Name</ng-template>
@@ -15,7 +19,7 @@
       </div>
     </form>
 
-    <button matStepperNext>Next</button>
+    <button matStepperNext class="btn filled primary max-180 mt-8">Next</button>
   </mat-step>
 
   <mat-step>
@@ -32,33 +36,37 @@
           <input #color type="text" (input)="onColorChange($event)">
         </div>
       </div>
-  
+
       <div class="col">
         <div class="color-preview">&nbsp;</div>
       </div>
 
       <div class="col">
         <button
-        (click)="onAddColor(colorName, color)"
-        class="btn filled primary max-180"
-      >Add Color</button>
+          [disabled]="!canAddColor"
+          [ngClass]="{'disabled': !canAddColor}"
+          (click)="onAddColor(colorName, color)"
+          class="btn filled primary max-180"
+        >Add Color</button>
       </div>
     </div>
 
     <div class="colors mb-4">
       <div class="color" *ngFor="let color of colorsService.colors; index as i">
         <div class="color-view" [style.background-color]="color.value">
-          <button class="color-delete" (click)="colorsService.removeColor(i)">X</button>
+          <button class="color-delete" (click)="colorsService.removeColor(i)"><i class="icon-close"></i></button>
         </div>
         <p class="text-center">{{ color.value }}</p>
       </div>
     </div>
-
-    <button matStepperPrevious>Back</button>
-    <button matStepperNext>Next</button>
+    <div class="mt-8">
+      <button matStepperPrevious class="btn filled secondary max-180 mr-5">Back</button>
+      <button matStepperNext class="btn filled primary max-180">Next</button>
+    </div>
   </mat-step>
 
   <mat-step>
+    <ng-template matStepLabel>Generate project</ng-template>
 
     <mat-checkbox [(ngModel)]="outlineChecked" (change)="onOutlineCheck($event)">Outline</mat-checkbox>
     <div class="text-field with-label" data-unit="px">
@@ -78,33 +86,36 @@
       >
     </div>
 
-    <div class="col">
+    <div class="col mt-4">
       <button class="button-preview">Solid</button>
       <button *ngIf="outlineChecked" class="button-preview outline ml-4">Outline</button>
     </div>
+
+    <div class="mt-5" *ngIf="message.text" [ngClass]="{'invalid': message.type === 'danger'}">
+      <p [ngClass]="{'error-msg': message.type === 'danger', 'success-msg': message.type === 'success'}">{{ message.text }}</p>
+    </div>
     
-    <div class="flex align-center">
-      <button matStepperPrevious>Back</button>
+    <div class="flex align-center mt-8">
+      <button matStepperPrevious class="btn filled secondary max-180 mr-5">Back</button>
       <button
         (click)="onCreateProject()"
         [disabled]="createProjectForm.invalid || projectIsCreated"
         [ngClass]="{'disabled': createProjectForm.invalid}"
-        class="btn filled primary max-180 mr-2"
+        class="btn filled primary max-180 mr-5"
       >Create Project</button>
       <mat-spinner
         *ngIf="projectIsCreating"
         [diameter]="20"
         mode="indeterminate"
+        class="mr-5"
       ></mat-spinner>
       <button
         (click)="onDownload()"
         [disabled]="!projectIsCreated"
         [ngClass]="{'disabled': !projectIsCreated}"
-        class="btn filled primary max-180 ml-2"
+        class="btn filled primary max-180"
       >Download</button>
-    </div>
-    <div *ngIf="message.text" [ngClass]="{'invalid': message.type === 'danger'}">
-      <p [ngClass]="{'error-msg': message.type === 'danger', 'success-msg': message.type === 'success'}">{{ message.text }}</p>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+</div>

@@ -1,24 +1,35 @@
-<table *ngIf="(projectsState$ | async).projects.length !== 0" style="width: 100%; text-align: center">
-  <thead>
-    <tr>
-      <th>Project Name</th>
-      <th>Date</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody [@listStagger]="projects">
-    <tr [id]="project.id" *ngFor="let project of (projectsState$ | async).projects">
-      <td>{{ project.projectName }}</td>
-      <td>{{ project.date }}</td>
-      <td>
-        <button (click)="onDownload(project.id, project.projectName)">Download</button>
-        <button (click)="onRemoveProject(project.id)" style="color: red">X</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="projects">
+  <h1 class="page-title">Projects</h1>
+  <div class="box">
 
-<div *ngIf="(projectsState$ | async).projects.length === 0" class="placeholder">
-  <p class="title"></p>
-  <p class="text">There is no projects</p>
+    <div class="container">
+      <div *ngIf="projects.length !== 0" class="main-table projects-table mb-5">
+        <table>
+          <thead>
+          <tr>
+            <th>Project Name</th>
+            <th>Date <button class="btn-icon ml-1 font-md date-sort" (click)="onSort()"><i class="icon-sort"></i></button></th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody [@listStagger]="projects">
+          <tr [id]="project.id" *ngFor="let project of projects">
+            <td>{{ project.projectName }}</td>
+            <td>{{ project.date | date: 'dd/MM/yyyy' }}</td>
+            <td>
+              <button class="btn-icon mr-3" (click)="onDownload(project.id, project.projectName)"><i class="icon-download"></i></button>
+              <button class="btn-icon color-warning" (click)="openDialog(project.id)"><i class="icon-close"></i></button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="(projectsState$ | async).projects.length === 0" class="placeholder">
+        <p class="text">There are no projects to show. :( </p>
+        <p class="desc-test">For creating a new project follow the <a routerLink="../create-project">link</a> ;)</p>
+      </div>
+
+    </div>
+  </div>
 </div>

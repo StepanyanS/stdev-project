@@ -1,34 +1,45 @@
 <!-- start section profile -->
-<h1>Profile</h1>
 
-<form [formGroup]="profileForm" (submit)="onSubmit()" class="field-group">
-  <div class="text-field">
-    <input
-      type="text"
-      formControlName="userName"
-    >
+<div class="profile-page">
+  <!-- Page title -->
+  <h1 class="page-title">Profile</h1>
+
+  <!-- Profile info -->
+
+  <div class="box">
+    <div class="container">
+      <form [formGroup]="profileForm" (submit)="onSubmit()" class="field-group">
+        <div class="text-field">
+          <input
+                  type="text"
+                  formControlName="userName"
+          >
+        </div>
+        <div class="text-field">
+          <input
+                  readonly
+                  type="email"
+                  formControlName="email"
+          >
+        </div>
+        <div class="text-field">
+          <input
+                  type="password"
+                  formControlName="password"
+                  placeholder="Current Password"
+          >
+        </div>
+        <div class="text-field">
+          <input
+                  type="password"
+                  formControlName="newPassword"
+                  placeholder="New Password"
+          >
+        </div>
+        <button type="submit" class="mt-4 btn filled primary max-180">Edit</button>
+      </form>
+    </div>
   </div>
-  <div class="text-field">
-    <input
-      readonly
-      type="email"
-      formControlName="email"
-    >
-  </div>
-  <div class="text-field">
-    <input
-      type="password"
-      formControlName="password"
-      placeholder="Current Password"
-    >
-  </div>
-  <div class="text-field">
-    <input
-      type="password"
-      formControlName="newPassword"
-      placeholder="New Password"
-    >
-  </div>
-  <button type="submit" class="mt-4 btn filled primary max-180">Edit</button>
-</form>
+</div>
+
 <!-- end section profile -->

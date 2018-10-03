@@ -10,21 +10,25 @@
   font-family: $font-primary;
 
   &.filled {
-    &.primary {
-      background-color: $color-primary;
-      border-color: darken($color-primary, 8%);
+    border: 0;
+    color: #ffffff;
 
-      &:hover {
-        background-color: darken($color-primary, 8%);
+    @each $key,$val in $main-colors {
+      &.#{$key} {
+        background-color: #{$val};
       }
     }
 
-    &[disabled], &.disabled {
-      opacity: .7;
+    &:hover {
+      opacity: 0.7;
+    }
 
-      &:hover {
-        background-color: $color-primary;
-      }
+    &[disabled], &.disabled {
+      color: rgba(#fff, 0.9);
+      background-color: $color-disable!important;
+      border-color: transparent;
+      pointer-events: none;
+
     }
   }
 
@@ -39,5 +43,19 @@
 
   &.no-style {
     background-color: none;
+  }
+}
+
+// Button icon
+
+.btn-icon {
+  background: none;
+  border: none;
+  font-size: $xxl;
+  cursor: pointer;
+  transition: $trns-duration;
+
+  &:hover {
+    opacity: 0.7;
   }
 }

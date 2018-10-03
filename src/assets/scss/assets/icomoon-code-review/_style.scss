@@ -2,7 +2,7 @@
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: $font-icons !important;
+  font-family: '#{$font-icons}' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -15,44 +15,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-check {
+.icon-trash {
   &:before {
-    content: $icon-check;
-  }
-}
-.icon-facebook {
-  &:before {
-    content: $icon-facebook;
-  }
-}
-.icon-g-plus {
-  &:before {
-    content: $icon-g-plus;
-  }
-}
-.icon-instagram {
-  &:before {
-    content: $icon-instagram;
-  }
-}
-.icon-next {
-  &:before {
-    content: $icon-next;
-  }
-}
-.icon-previous {
-  &:before {
-    content: $icon-previous;
-  }
-}
-.icon-search {
-  &:before {
-    content: $icon-search;
-  }
-}
-.icon-twitter {
-  &:before {
-    content: $icon-twitter;
+    content: $icon-trash;
   }
 }
 
+.icon-filter {
+  &:before {
+    content: $icon-filter;
+  }
+}
+.icon-sort {
+  &:before {
+    content: $icon-sort;
+  }
+}
+.icon-download {
+  &:before {
+    content: $icon-download;
+  }
+}
+.icon-close {
+  &:before {
+    content: $icon-close;
+  }
+}

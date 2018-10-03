@@ -1,53 +1,99 @@
-//paths
+// paths
+
 $fonts-folder: "../fonts";
 $images-folder: '../img/';
 
-//fonts
+// fonts
+
 $font-primary: "Open Sans", serif;
 $font-secondary: "Times New Roman", serif;
-$font-icons: "Icomoon Project Name";
+$font-icons: "Icomoon STDev-front";
 
-//color usage
+// color usage
+
 $color-blue: #0498d1 !default;
 $color-light-blue: #8fd8f8 !default;
 $color-black: #262626 !default;
-$color-red: #e44c23 !default;
+$color-black-80: rgba($color-black, 0.8);
+$color-black-50: rgba($color-black, 0.5);
+$color-red: #EF5350 !default;
+$color-white: #F3F3F3 !default;
 $color-green: #99c76a !default;
+$color-primary: #3B86FF !default;
+$color-secondary: #43425D !default;
 
-$color-primary: $color-blue !default;
-$color-secondary: $color-black !default;
-$color-warning: $color-red !default;
-$color-success: $color-green !default;
+// descriptive base colors
 
-//Descriptive Base Colors
 $color-text: $color-black;
+$color-warning: $color-red;
+$color-body: $color-white;
+$color-success: $color-green;
+$color-border: #E8E9EC;
+$color-border-50: rgba($color-border, 0.5);
+$color-disable: #cecece;
 
-//Text
+
+$main-colors: (
+		primary: $color-primary, secondary: $color-secondary,  text: $color-text, warning: $color-warning,
+) !default;
+
+
+// text
+
 $xs: 12px;
 $sm: 14px;
 $md: 16px;
 $lg: 18px;
 $xl: 20px;
+$xxl: 28px;
+
+$text-font-sizes: (
+		xs: $xs, sm: $sm, md: $md, lg: $lg, xl: $xl, xxl: $xxl
+) !default;
+
+// base font size
 
 $base-font-size: $md;
 
-//Border Radiuses
+// heading font sizes
+
+$h-xs: 14px;
+$h-sm: 20px;
+$h-md: 26px;
+$h-lg: 32px;
+$h-xl: 36px;
+$h-xxl: 40px;
+
+$heading-font-sizes: (
+		h6: $h-xs, h5: $h-sm, h4: $h-md, h3: $h-lg, h2: $h-xl, h1: $h-xxl
+) !default;
+
+// border radiuses
+
 $br-default: 4px;
 $br-md: 10px;
 $br-lg: 30px;
 $br-rounded: 50%;
 $br-none: 0;
 
-// Transitions
+// transitions
+
 $trns-duration: .3s;
 $trns-duration-lg: 1s;
 $trns-delay: 50ms;
 
-//container
+// box shadows
+
+$header-shadow: 0 10px 30px -5px rgba(0,0,0,0.1);
+$box-shadow: 0 2px 27px 1px rgba(0,0,0,0.1);
+
+// container
+
 $cont-width: 1170px;
 $cont-padding: 30px;
 
-//Resolutions
+// resolutions
+
 $screen-lg: 1280px;
 $screen-md: 1024px;
 $screen-sm: 768px;

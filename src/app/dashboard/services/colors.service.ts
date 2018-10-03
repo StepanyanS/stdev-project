@@ -28,7 +28,7 @@ export class ColorsService {
     // ];
    }
 
-  private appllyColor(hex: string): void {
+  public appllyColor(hex: string): void {
     document.documentElement.style.setProperty('--color-background', `#${hex}`);
   }
 
@@ -45,11 +45,5 @@ export class ColorsService {
 
   removeColor(index: number) {
     this.colors.splice(index, 1);
-  }
-
-  public colorChange($event): void {
-    if($event.target.value.length === 6) {
-      this.appllyColor($event.target.value);
-    }
   }
 }

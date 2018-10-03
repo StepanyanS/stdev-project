@@ -8,6 +8,13 @@
   --btn-border-color: #000;
 }
 
+.create-project {
+
+  .text-field {
+    max-width: 700px;
+  }
+
+
 .color-preview {
   height: 40px;
   background-color: var(--color-background);
@@ -29,14 +36,13 @@
     .color-view {
       width: 80px;
       height: 80px;
-      border-radius: 5px;
       
       .color-delete {
         position: absolute;
         top: 5px;
         right: 5px;
         text-align: center;
-        padding: 2px 5px;
+        padding: 1px 2px;
         background-color: rgba(255, 255, 255, .6);
         visibility: hidden;
         opacity: 0;
@@ -44,9 +50,11 @@
         outline: 0;
         transition: .3s;
         cursor: pointer;
+        font-size: $md;
   
         &:hover {
           box-shadow: none;
+          color: $color-warning;
         }
       }
 
@@ -78,4 +86,5 @@
     background-color: transparent;
     border: var(--btn-border-width) var(--btn-border-style) var(--btn-border-color);
   }
+}
 }
