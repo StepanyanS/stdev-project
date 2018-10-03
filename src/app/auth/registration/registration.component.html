@@ -56,7 +56,7 @@
           Confirm Password must be at least {{regForm.get('confirmPassword')['errors']['minlength']['requiredLength']}} characters.
           You have entered {{regForm.get('confirmPassword')['errors']['minlength']['actualLength']}}
         </span>
-        <span *ngIf="regForm.get('email')['errors']['confirmPassword']">Passwords don't match.</span>
+        <span *ngIf="regForm.get('confirmPassword')['errors']['confirmPassword']">Passwords don't match.</span>
       </p>
     </div>
 

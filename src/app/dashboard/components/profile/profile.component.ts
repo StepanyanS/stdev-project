@@ -43,19 +43,36 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    const userData = this.profileForm.value;
-    this.usersService.editUser(userData)
-      .subscribe((res: IResult) => {
-        Object.assign(this.user, res.data);
-        this.profileForm.setValue({
-          'userName': this.user.userName,
-          'email': this.user.email,
-          'password': null,
-          'newPassword': null
+    if(this.profileForm.valid) {
+      const userData = this.profileForm.value;
+      this.usersService.editUser(userData)
+        .subscribe((res: IResult) => {
+          Object.assign(this.user, res.data);
+          this.profileForm.setValue({
+            'userName': this.user.userName,
+            'email': this.user.email,
+            'password': null,
+            'newPassword': null
+          });
+          this.markAsValid();
         });
-        this.profileForm.controls.password.markAsUntouched();
-        this.profileForm.controls.newPassword.markAsUntouched();
-      });
+    } else {
+      this.markAsInvalid();
+    }
+  }
+
+  private markAsValid () {
+    this.profileForm.controls.password.markAsUntouched();
+    this.profileForm.controls.newPassword.markAsUntouched();
+    this.profileForm.controls.password.markAsPristine();
+    this.profileForm.controls.newPassword.markAsPristine();
+  }
+
+  private markAsInvalid () {
+    this.profileForm.controls.password.markAsTouched();
+    this.profileForm.controls.newPassword.markAsTouched();
+    this.profileForm.controls.password.markAsDirty();
+    this.profileForm.controls.newPassword.markAsDirty();
   }
 
 }

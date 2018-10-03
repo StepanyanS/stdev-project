@@ -80,6 +80,7 @@
   height: var(--btn-height);
   border-radius: var(--btn-border-radius);
   cursor: pointer;
+  min-width: 160px;
 
   &.outline {
     color: #000;
